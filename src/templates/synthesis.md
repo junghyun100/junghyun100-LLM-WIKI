@@ -1,5 +1,6 @@
 ---
 # 프론트매터 (위 표준 준수)
+# 파일명 규칙: YYYY-MM-DD-slug.md (예: 2025-07-16-llm-scaling-laws.md)
 ---
 
 # {{title}}

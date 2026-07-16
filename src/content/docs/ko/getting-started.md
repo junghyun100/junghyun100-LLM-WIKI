@@ -7,6 +7,8 @@ description: 'LLM Wiki 개발 워크플로, 콘텐츠 구조, 배포 절차'
 
 LLM Wiki 개발 및 운영 가이드입니다.
 
+> 📚 **공식 문서**: [Starlight 문서](https://starlight.astro.build/) · [Astro 문서](https://docs.astro.build/) · [Starlight 시작하기](https://starlight.astro.build/getting-started/)
+
 ---
 
 ## 개발 워크플로
