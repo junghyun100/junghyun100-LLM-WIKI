@@ -33,6 +33,8 @@
 
 ## 🚀 빠른 시작
 
+> 📚 **Starlight 가이드**: [시작하기](https://starlight.astro.build/getting-started/) · [구성](https://starlight.astro.build/reference/configuration/) · [배포](https://starlight.astro.build/guides/deploy/)
+
 ### 필수 요구사항
 - **Node.js 20+**
 - **npm 10+**

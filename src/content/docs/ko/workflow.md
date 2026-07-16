@@ -247,6 +247,8 @@ Critical/High 이슈는 사용자 확인 후 조치.
 
 > `src/templates/` 아래 템플릿 파일 참고. 필요시 스크립트화 권장.
 
+> 📚 **도구 & 참고**: [Starlight 배포 가이드](https://starlight.astro.build/guides/deploy/) · [Astro 빌드 설정](https://docs.astro.build/en/guides/build/) · [Pagefind 검색](https://starlight.astro.build/reference/configuration/#pagefind)
+
 ---
 
 *이 워크플로는 `schema/CLAUDE.md` §5의 실무 가이드입니다. 변경 시 CLAUDE.md와 동기화 필요.*
