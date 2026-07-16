@@ -1,0 +1,391 @@
+---
+// TableOfContents.astro - Custom TOC with Cross-Reference Sidebar
+// Extends default TOC (left rail) and injects wiki-xref sidebar (right rail, desktop ≥1024px)
+
+// Get TOC data and page entry from Starlight route locals
+const { toc, entry } = Astro.locals.starlightRoute;
+const headings = toc?.items || [];
+const { data } = entry;
+
+// Extract cross-reference data from frontmatter
+// Expected frontmatter fields:
+// related_entities: Array<{ slug: string; title: string; date?: string }>
+// related_concepts: Array<{ slug: string; title: string; date?: string }>
+// cited_in: Array<{ slug: string; title: string; date?: string }>
+// Using type assertion since these are custom fields not in Starlight's default schema
+const customData = data as Record<string, unknown>;
+const relatedEntities = (customData.related_entities as Array<{ slug: string; title: string; date?: string }>) || [];
+const relatedConcepts = (customData.related_concepts as Array<{ slug: string; title: string; date?: string }>) || [];
+const citedIn = (customData.cited_in as Array<{ slug: string; title: string; date?: string }>) || [];
+
+// Check if any xref data exists
+const hasXRefData = relatedEntities.length > 0 || relatedConcepts.length > 0 || citedIn.length > 0;
+
+// Convert wiki-style slug to URL path
+// WikiLink format: [[page-title]] -> /ko/wiki/entities/page-title/ or /ko/wiki/concepts/page-title/
+function slugToHref(slug: string, type: 'entity' | 'concept' | 'source'): string {
+  const base = '/ko/wiki';
+  const prefix = type === 'entity' ? 'entities' : type === 'concept' ? 'concepts' : 'sources';
+  const normalized = slug.replace(/^\[\[|\]\]$/g, '').trim();
+  return `${base}/${prefix}/${normalized}/`.replace(/\/+/g, '/');
+}
+
+// Format date for display
+function formatDate(dateStr?: string): string {
+  if (!dateStr) return '';
+  try {
+    return new Date(dateStr).toLocaleDateString('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    }).replace(/\. /g, '.').replace(/\.$/, '');
+  } catch {
+    return dateStr;
+  }
+}
+
+// Type badge component
+function TypeBadge({ type }: { type: 'entity' | 'concept' | 'source' }) {
+  const badgeClasses = {
+    entity: 'wiki-xref-sidebar__type--entity',
+    concept: 'wiki-xref-sidebar__type--concept',
+    source: 'wiki-xref-sidebar__type--source'
+  };
+  const labels = { entity: '엔티티', concept: '개념', source: '소스' };
+  return (
+    <span class={`wiki-xref-sidebar__type ${badgeClasses[type]}`}>
+      {labels[type]}
+    </span>
+  );
+}
+
+// Recursive TOC item component
+interface TocItem {
+  depth: number;
+  text: string;
+  slug: string;
+  children?: TocItem[];
+}
+
+function TocItemComponent({ heading }: { heading: TocItem }) {
+  return (
+    <li class={`wiki-toc-item wiki-toc-level-${heading.depth}`} style={{ '--toc-indent': `${(heading.depth - 2) * 1.5}rem` }}>
+      <a href={`#${heading.slug}`} class="wiki-toc-link">{heading.text}</a>
+      {heading.children && heading.children.length > 0 && (
+        <ul class="wiki-toc-list">
+          {heading.children.map((child) => <TocItemComponent heading={child} />)}
+        </ul>
+      )}
+    </li>
+  );
+}
+---
+
+<style>
+  @layer starlight.core {
+    /* Right sidebar layout wrapper - extends Starlight's two-column layout */
+    :host {
+      display: contents;
+    }
+
+    /* Main TOC container (left rail) - inherits Starlight styles via TableOfContentsList */
+    .wiki-toc-wrapper {
+      min-width: 0;
+    }
+
+    /* Cross-reference sidebar (right rail) - desktop only */
+    .wiki-xref-sidebar {
+      position: sticky;
+      top: calc(var(--wiki-header-height) + var(--wiki-space-6));
+      max-height: calc(100vh - var(--wiki-header-height) - var(--wiki-space-10));
+      overflow-y: auto;
+      padding: var(--wiki-space-4);
+      background: var(--wiki-surface);
+      border: 1px solid var(--wiki-border);
+      border-radius: var(--wiki-radius-md);
+      font-size: var(--wiki-text-sm);
+    }
+
+    .wiki-xref-sidebar__section {
+      margin-bottom: var(--wiki-space-4);
+    }
+    .wiki-xref-sidebar__section:last-child {
+      margin-bottom: 0;
+    }
+
+    .wiki-xref-sidebar__title {
+      display: flex;
+      align-items: center;
+      gap: var(--wiki-space-2);
+      font-size: var(--wiki-text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--wiki-text-muted);
+      margin: 0 0 var(--wiki-space-2);
+      padding-bottom: var(--wiki-space-2);
+      border-bottom: 1px solid var(--wiki-border);
+    }
+
+    .wiki-xref-sidebar__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .wiki-xref-sidebar__item {
+      margin: var(--wiki-space-1) 0;
+    }
+
+    .wiki-xref-sidebar__link {
+      display: block;
+      padding: var(--wiki-space-2) var(--wiki-space-3);
+      border-radius: var(--wiki-radius-sm);
+      color: var(--wiki-text);
+      text-decoration: none;
+      transition: background var(--wiki-duration-fast) var(--wiki-ease),
+                  color var(--wiki-duration-fast) var(--wiki-ease);
+    }
+
+    .wiki-xref-sidebar__link:hover {
+      background: var(--wiki-layer-xref-bg);
+      color: var(--wiki-layer-xref);
+    }
+
+    .wiki-xref-sidebar__link:focus-visible {
+      outline: none;
+      box-shadow: var(--wiki-focus-ring);
+    }
+
+    .wiki-xref-sidebar__type {
+      display: inline-block;
+      margin-right: var(--wiki-space-2);
+      font-size: var(--wiki-text-xs);
+      font-weight: 600;
+      color: var(--wiki-text-muted);
+      text-transform: uppercase;
+    }
+
+    .wiki-xref-sidebar__type--entity { color: var(--wiki-layer-wiki); }
+    .wiki-xref-sidebar__type--concept { color: var(--wiki-layer-schema); }
+    .wiki-xref-sidebar__type--source { color: var(--wiki-layer-source); }
+
+    .wiki-xref-sidebar__item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .wiki-xref-sidebar__item-title {
+      font-weight: 500;
+      line-height: var(--wiki-leading-snug);
+    }
+
+    .wiki-xref-sidebar__item-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--wiki-space-2);
+      font-size: var(--wiki-text-xs);
+      color: var(--wiki-text-subtle);
+    }
+
+    .wiki-xref-sidebar__item-date {
+      font-family: var(--wiki-font-mono);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Mobile: hide xref sidebar (CSS in custom.css handles this via @media max-width: 1024px) */
+    /* Reading mode: hide xref sidebar (handled by custom.css) */
+
+    /* Layout adjustment for two-column on desktop */
+    @media (min-width: 1024px) {
+      .wiki-page-layout {
+        display: grid;
+        grid-template-columns:
+          minmax(0, 1fr)           /* main content */
+          var(--wiki-sidebar-width) /* left TOC */
+          280px;                    /* right xref sidebar */
+        gap: var(--wiki-space-8);
+        align-items: start;
+      }
+
+      .wiki-content-wrapper {
+        min-width: 0;
+      }
+
+      /* Ensure the TOC container works with grid */
+      .sl-page {
+        display: contents;
+      }
+    }
+  }
+</style>
+
+<!--
+  This component wraps Starlight's default PageSidebar layout.
+  The PageSidebar.astro renders:
+  - Mobile TOC (lg:hidden)
+  - Right sidebar panel (lg:block) containing our TableOfContents
+
+  We output the default TOC and conditionally inject the xref sidebar
+  as a sibling in the right sidebar panel.
+-->
+
+{
+  // Render default TOC (heading links) when headings exist
+  headings && headings.length > 0 && (
+    <starlight-toc data-min-h={2} data-max-h={6}>
+      <nav aria-labelledby="starlight__on-this-page" class="wiki-toc-wrapper">
+        <h2 id="starlight__on-this-page" class="sl-hidden">목차</h2>
+        <ul class="wiki-toc-list">
+          {headings.map((heading) => (
+            <TocItemComponent heading={heading} />
+          ))}
+        </ul>
+      </nav>
+    </starlight-toc>
+  )
+}
+
+<!-- Cross-Reference Sidebar (right rail) - Desktop only -->
+{
+  hasXRefData && (
+    <aside
+      class="wiki-xref-sidebar"
+      aria-label="교차 참조"
+      role="complementary"
+    >
+      {relatedEntities.length > 0 && (
+        <section class="wiki-xref-sidebar__section" aria-labelledby="xref-entities-title">
+          <h3 id="xref-entities-title" class="wiki-xref-sidebar__title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            관련 엔티티
+          </h3>
+          <ul class="wiki-xref-sidebar__list">
+            {relatedEntities.map((item) => (
+              <li class="wiki-xref-sidebar__item">
+                <a
+                  href={slugToHref(item.slug, 'entity')}
+                  class="wiki-xref-sidebar__link"
+                  aria-label={`${item.title} (엔티티)${item.date ? `, ${formatDate(item.date)}` : ''}`}
+                >
+                  <TypeBadge type="entity" />
+                  <span class="wiki-xref-sidebar__item-content">
+                    <span class="wiki-xref-sidebar__item-title">[[{item.title}]]</span>
+                    {item.date && (
+                      <span class="wiki-xref-sidebar__item-meta">
+                        <time class="wiki-xref-sidebar__item-date" datetime={item.date}>
+                          {formatDate(item.date)}
+                        </time>
+                      </span>
+                    )}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {relatedConcepts.length > 0 && (
+        <section class="wiki-xref-sidebar__section" aria-labelledby="xref-concepts-title">
+          <h3 id="xref-concepts-title" class="wiki-xref-sidebar__title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4M12 8h.01"/>
+            </svg>
+            관련 개념
+          </h3>
+          <ul class="wiki-xref-sidebar__list">
+            {relatedConcepts.map((item) => (
+              <li class="wiki-xref-sidebar__item">
+                <a
+                  href={slugToHref(item.slug, 'concept')}
+                  class="wiki-xref-sidebar__link"
+                  aria-label={`${item.title} (개념)${item.date ? `, ${formatDate(item.date)}` : ''}`}
+                >
+                  <TypeBadge type="concept" />
+                  <span class="wiki-xref-sidebar__item-content">
+                    <span class="wiki-xref-sidebar__item-title">[[{item.title}]]</span>
+                    {item.date && (
+                      <span class="wiki-xref-sidebar__item-meta">
+                        <time class="wiki-xref-sidebar__item-date" datetime={item.date}>
+                          {formatDate(item.date)}
+                        </time>
+                      </span>
+                    )}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {citedIn.length > 0 && (
+        <section class="wiki-xref-sidebar__section" aria-labelledby="xref-cited-title">
+          <h3 id="xref-cited-title" class="wiki-xref-sidebar__title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            인용된 곳
+          </h3>
+          <ul class="wiki-xref-sidebar__list">
+            {citedIn.map((item) => (
+              <li class="wiki-xref-sidebar__item">
+                <a
+                  href={slugToHref(item.slug, 'source')}
+                  class="wiki-xref-sidebar__link"
+                  aria-label={`${item.title} (소스)${item.date ? `, ${formatDate(item.date)}` : ''}`}
+                >
+                  <TypeBadge type="source" />
+                  <span class="wiki-xref-sidebar__item-content">
+                    <span class="wiki-xref-sidebar__item-title">[[{item.title}]]</span>
+                    {item.date && (
+                      <span class="wiki-xref-sidebar__item-meta">
+                        <time class="wiki-xref-sidebar__item-date" datetime={item.date}>
+                          {formatDate(item.date)}
+                        </time>
+                      </span>
+                    )}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </aside>
+  )
+}
+
+<script is:inline>
+  // Table of Contents interactive behavior (from Starlight)
+  // Highlight active heading on scroll
+  if (typeof window !== 'undefined') {
+    const tocLinks = document.querySelectorAll('.wiki-toc-wrapper a[href^="#"]');
+    const headings = Array.from(tocLinks).map(link => {
+      const href = link.getAttribute('href');
+      return href ? document.querySelector(href) : null;
+    }).filter(Boolean);
+
+    if (tocLinks.length && headings.length) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            const activeLink = document.querySelector(`.wiki-toc-wrapper a[href="#${id}"]`);
+            document.querySelectorAll('.wiki-toc-wrapper a[aria-current="true"]').forEach(el => el.removeAttribute('aria-current'));
+            activeLink?.setAttribute('aria-current', 'true');
+          }
+        });
+      }, { rootMargin: '-80px 0px -66%' });
+
+      headings.forEach(h => observer.observe(h));
+    }
+  }
+</script>

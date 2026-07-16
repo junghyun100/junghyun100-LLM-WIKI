@@ -1,0 +1,83 @@
+---
+// Footer.astro - Minimal footer with schema version, last lint, log link
+---
+import type { Props } from '@astrojs/starlight/components';
+
+const { page } = Astro.props as Props;
+
+const schemaVersion = 'v1.0.0';
+const lastLintDate = '—';
+---
+
+<footer class="wiki-footer" role="contentinfo">
+  <div class="wiki-footer__content">
+    <div class="wiki-footer__left">
+      <span class="wiki-footer__schema">스키마 {schemaVersion}</span>
+      <span class="wiki-footer__divider" aria-hidden="true">|</span>
+      <span class="wiki-footer__lint">마지막 린트: {lastLintDate}</span>
+    </div>
+
+    <div class="wiki-footer__right">
+      <a href="/log" class="wiki-footer__link">변경 로그</a>
+      <span class="wiki-footer__divider" aria-hidden="true">|</span>
+      <Slots name="footer-links" />
+    </div>
+  </div>
+</footer>
+
+<style>
+  .wiki-footer {
+    border-top: 1px solid var(--wiki-border);
+    padding: var(--wiki-space-6) 0;
+    margin-top: var(--wiki-space-16);
+    background: var(--wiki-surface);
+  }
+
+  .wiki-footer__content {
+    max-width: var(--wiki-content-max);
+    margin: 0 auto;
+    padding: 0 var(--wiki-space-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--wiki-space-3);
+    font-size: var(--wiki-text-xs);
+  }
+
+  .wiki-footer__left {
+    display: flex;
+    align-items: center;
+    gap: var(--wiki-space-3);
+    color: var(--wiki-text-muted);
+  }
+
+  .wiki-footer__right {
+    display: flex;
+    align-items: center;
+    gap: var(--wiki-space-3);
+  }
+
+  .wiki-footer__divider {
+    color: var(--wiki-text-subtle);
+  }
+
+  .wiki-footer__link {
+    color: var(--wiki-text-muted);
+    text-decoration: none;
+    font-size: var(--wiki-text-xs);
+    transition: color var(--wiki-duration-fast) var(--wiki-ease);
+  }
+  .wiki-footer__link:hover {
+    color: var(--wiki-layer-wiki);
+  }
+  .wiki-footer__link:focus-visible {
+    outline: none;
+    border-radius: var(--wiki-radius-sm);
+    box-shadow: var(--wiki-focus-ring);
+  }
+
+  @media (max-width: 640px) {
+    .wiki-footer__content { flex-direction: column; text-align: center; }
+  }
+</style>

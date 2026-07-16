@@ -1,0 +1,438 @@
+---
+/**
+ * SearchFilter.astro - Client-side filter chips for Pagefind search results
+ * Filters by meta.layer (source/wiki/schema) and meta.type (entity/concept/source)
+ * Uses client:visible island hydration after Pagefind loads
+ */
+---
+
+<div class="wiki-search-filters" role="group" aria-label="검색 결과 필터">
+  <div class="wiki-search-filter" role="tablist" aria-label="레이어 필터">
+    {LayerFilters.map((filter) => (
+      <button
+        class={`wiki-filter-chip wiki-filter-chip--${filter.color} ${filter.id === 'all' ? 'wiki-filter-chip--active' : ''}`}
+        role="tab"
+        aria-selected={filter.id === 'all'}
+        aria-controls={`filter-panel-${filter.id}`}
+        id={`filter-tab-${filter.id}`}
+        data-filter-type="layer"
+        data-filter-value={filter.value}
+        data-filter-id={filter.id}
+        tabindex={filter.id === 'all' ? 0 : -1}
+      >
+        {filter.label}
+      </button>
+    ))}
+  </div>
+  <div class="wiki-search-filter" role="tablist" aria-label="타입 필터">
+    {TypeFilters.map((filter) => (
+      <button
+        class={`wiki-filter-chip wiki-filter-chip--${filter.color}`}
+        role="tab"
+        aria-selected="false"
+        aria-controls={`filter-panel-${filter.id}`}
+        id={`filter-tab-${filter.id}`}
+        data-filter-type="type"
+        data-filter-value={filter.value}
+        data-filter-id={filter.id}
+        tabindex="-1"
+      >
+        {filter.label}
+      </button>
+    ))}
+  </div>
+  <span class="wiki-search-filter__count" aria-live="polite"></span>
+</div>
+
+<script>
+  // Filter definitions
+  export const LayerFilters = [
+    { id: 'all', label: '전체', type: 'layer', value: '', color: 'none' },
+    { id: 'layer-source', label: 'Sources', type: 'layer', value: 'source', color: 'teal' },
+    { id: 'layer-wiki', label: 'Wiki', type: 'layer', value: 'wiki', color: 'blue' },
+    { id: 'layer-schema', label: 'Schema', type: 'layer', value: 'schema', color: 'violet' },
+  ] as const;
+
+  export const TypeFilters = [
+    { id: 'type-entity', label: 'Entities', type: 'type', value: 'entity', color: 'blue' },
+    { id: 'type-concept', label: 'Concepts', type: 'type', value: 'concept', color: 'violet' },
+    { id: 'type-source', label: 'Sources', type: 'type', value: 'source', color: 'teal' },
+  ] as const;
+
+  type Filter = typeof LayerFilters[number] | typeof TypeFilters[number];
+  type FilterType = Filter['type'];
+</script>
+
+<script is:inline>
+  // Search filter controller - runs on the client when island mounts
+  class SearchFilterController {
+    private activeLayer: string = '';
+    private activeType: string = '';
+    private chips: HTMLButtonElement[] = [];
+    private observer: MutationObserver | null = null;
+    private debounceTimer: number | null = null;
+
+    constructor() {
+      // Wait for DOM and Pagefind to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.setup());
+      } else {
+        this.setup();
+      }
+    }
+
+    private setup() {
+      this.chips = Array.from(document.querySelectorAll('.wiki-filter-chip'));
+      this.restoreFromHash();
+      this.bindKeys();
+      this.bindClicks();
+      this.observePagefindResults();
+      this.updateChipStates();
+    }
+
+    private bindClicks() {
+      this.chips.forEach((chip) => {
+        chip.addEventListener('click', () => this.toggleFilter(chip));
+      });
+    }
+
+    private bindKeys() {
+      document.addEventListener('keydown', (e) => {
+        if (!this.isChipFocused()) return;
+
+        const activeIndex = this.chips.findIndex((c) => c === document.activeElement);
+        if (activeIndex === -1) return;
+
+        let nextIndex = activeIndex;
+        const isLayerGroup = this.chips[activeIndex].dataset.filterType === 'layer';
+        const groupChips = this.chips.filter((c) => c.dataset.filterType === (isLayerGroup ? 'layer' : 'type'));
+
+        switch (e.key) {
+          case 'ArrowRight':
+          case 'ArrowDown':
+            e.preventDefault();
+            nextIndex = this.chips.indexOf(groupChips[(groupChips.indexOf(this.chips[activeIndex]) + 1) % groupChips.length]);
+            break;
+          case 'ArrowLeft':
+          case 'ArrowUp':
+            e.preventDefault();
+            nextIndex = this.chips.indexOf(groupChips[(groupChips.indexOf(this.chips[activeIndex]) - 1 + groupChips.length) % groupChips.length]);
+            break;
+          case 'Home':
+            e.preventDefault();
+            nextIndex = this.chips.indexOf(groupChips[0]);
+            break;
+          case 'End':
+            e.preventDefault();
+            nextIndex = this.chips.indexOf(groupChips[groupChips.length - 1]);
+            break;
+          case 'Enter':
+          case ' ':
+            e.preventDefault();
+            this.toggleFilter(this.chips[activeIndex]);
+            return;
+          default:
+            return;
+        }
+
+        this.chips[nextIndex]?.focus();
+      });
+    }
+
+    private isChipFocused(): boolean {
+      return this.chips.some((c) => c === document.activeElement);
+    }
+
+    private toggleFilter(chip: HTMLButtonElement) {
+      const type = chip.dataset.filterType as 'layer' | 'type';
+      const value = chip.dataset.filterValue || '';
+
+      if (type === 'layer') {
+        // Layer filter is radio-style (only one active)
+        this.activeLayer = this.activeLayer === value ? '' : value;
+        this.updateChipStates('layer');
+      } else {
+        // Type filter is toggle-style
+        this.activeType = this.activeType === value ? '' : value;
+        this.updateChipStates('type');
+      }
+
+      this.applyFilter();
+      this.updateHash();
+    }
+
+    private updateChipStates(filterType?: 'layer' | 'type') {
+      this.chips.forEach((chip) => {
+        const type = chip.dataset.filterType;
+        const value = chip.dataset.filterValue || '';
+
+        if (filterType && type !== filterType) return;
+
+        const isActive =
+          (type === 'layer' && value === this.activeLayer) ||
+          (type === 'type' && value === this.activeType) ||
+          (type === 'layer' && value === '' && this.activeLayer === '');
+
+        chip.classList.toggle('wiki-filter-chip--active', isActive);
+        chip.setAttribute('aria-selected', isActive.toString());
+        chip.setAttribute('aria-pressed', isActive.toString());
+      });
+    }
+
+    private applyFilter() {
+      // Debounce filter application
+      if (this.debounceTimer) clearTimeout(this.debounceTimer);
+      this.debounceTimer = window.setTimeout(() => this.filterPagefindResults(), 50);
+    }
+
+    private filterPagefindResults() {
+      const results = document.querySelectorAll('#starlight__search .pagefind-ui__result');
+      const nestedResults = document.querySelectorAll('#starlight__search .pagefind-ui__result-nested');
+      const allResults = [...results, ...nestedResults];
+
+      allResults.forEach((result) => {
+        const layer = result.getAttribute('data-layer') || '';
+        const type = result.getAttribute('data-type') || '';
+
+        const layerMatch = !this.activeLayer || layer === this.activeLayer;
+        const typeMatch = !this.activeType || type === this.activeType;
+        const shouldShow = layerMatch && typeMatch;
+
+        (result as HTMLElement).style.display = shouldShow ? '' : 'none';
+      });
+
+      // Update result count if visible
+      this.updateResultCount(allResults);
+    }
+
+    private updateResultCount(results: Element[]) {
+      const visible = results.filter((r) => (r as HTMLElement).style.display !== 'none').length;
+      const counter = document.querySelector('.wiki-search-filter__count');
+      if (counter) counter.textContent = `${visible}개 결과`;
+    }
+
+    private observePagefindResults() {
+      const searchContainer = document.querySelector('#starlight__search');
+      if (!searchContainer) {
+        // Retry after a short delay
+        setTimeout(() => this.observePagefindResults(), 100);
+        return;
+      }
+
+      this.observer = new MutationObserver(() => {
+        // Re-apply filter when new results are rendered
+        this.filterPagefindResults();
+        // Re-attach data attributes to new results
+        this.enrichResultsWithMeta();
+      });
+
+      this.observer.observe(searchContainer, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['data-layer', 'data-type'],
+      });
+
+      // Initial enrichment
+      this.enrichResultsWithMeta();
+    }
+
+    private enrichResultsWithMeta() {
+      // Wait for Pagefind to populate meta on results
+      const results = document.querySelectorAll(
+        '#starlight__search .pagefind-ui__result, #starlight__search .pagefind-ui__result-nested'
+      );
+
+      results.forEach((result) => {
+        // Check if already enriched
+        if (result.hasAttribute('data-layer') && result.hasAttribute('data-type')) return;
+
+        // Get meta from Pagefind's data attributes or from the result element
+        const link = result.querySelector('.pagefind-ui__result-link, .pagefind-ui__result-nested .pagefind-ui__result-link');
+        if (!link) return;
+
+        const url = link.getAttribute('href');
+        if (!url) return;
+
+        // Extract layer and type from URL path
+        // URLs follow pattern: /ko/wiki/entities/... or /ko/schema/... or /ko/sources/...
+        const layerMatch = url.match(/\/ko\/(wiki|schema|sources)\//);
+        const layer = layerMatch ? layerMatch[1] : '';
+
+        // Type is wiki page directory: entities -> entity, concepts -> concept, sources -> source
+        let type = '';
+        if (url.includes('/entities/')) type = 'entity';
+        else if (url.includes('/concepts/')) type = 'concept';
+        else if (url.includes('/sources/')) type = 'source';
+
+        // Also check for layer in wiki pages
+        if (layer === 'wiki') {
+          // Wiki pages are either entities or concepts based on path
+          if (!type && url.includes('/wiki/')) {
+            // Default wiki type determination from URL
+            type = 'entity';
+          }
+        }
+
+        if (layer) result.setAttribute('data-layer', layer);
+        if (type) result.setAttribute('data-type', type);
+      });
+
+      // Re-apply filter after enrichment
+      this.filterPagefindResults();
+    }
+
+    private updateHash() {
+      const params = new URLSearchParams();
+      if (this.activeLayer) params.set('layer', this.activeLayer);
+      if (this.activeType) params.set('type', this.activeType);
+
+      const hash = params.toString() ? `?${params.toString()}` : '';
+      window.history.replaceState(null, '', `${window.location.pathname}${hash}`);
+    }
+
+    private restoreFromHash() {
+      const params = new URLSearchParams(window.location.search.slice(1));
+      this.activeLayer = params.get('layer') || '';
+      this.activeType = params.get('type') || '';
+    }
+
+    // Cleanup
+    destroy() {
+      this.observer?.disconnect();
+      if (this.debounceTimer) clearTimeout(this.debounceTimer);
+    }
+  }
+
+  // Initialize when island mounts (client:visible)
+  new SearchFilterController();
+</script>
+
+<style>
+  @layer search-filter {
+    .wiki-search-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--wiki-space-3);
+      margin-bottom: var(--wiki-space-4);
+      padding-bottom: var(--wiki-space-3);
+      border-bottom: 1px solid var(--wiki-border);
+    }
+
+    .wiki-search-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--wiki-space-2);
+    }
+
+    .wiki-filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--wiki-space-1);
+      padding: var(--wiki-space-1) var(--wiki-space-3);
+      border-radius: var(--wiki-radius-full);
+      font-size: var(--wiki-text-xs);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      background: var(--wiki-gray-100);
+      color: var(--wiki-text-muted);
+      cursor: pointer;
+      transition:
+        background-color var(--wiki-duration-fast) var(--wiki-ease),
+        border-color var(--wiki-duration-fast) var(--wiki-ease),
+        color var(--wiki-duration-fast) var(--wiki-ease);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .wiki-filter-chip {
+        background: var(--wiki-gray-800);
+        color: var(--wiki-text-subtle);
+      }
+    }
+
+    .wiki-filter-chip:hover:not(.wiki-filter-chip--active) {
+      background: var(--wiki-gray-200);
+      color: var(--wiki-text);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .wiki-filter-chip:hover:not(.wiki-filter-chip--active) {
+        background: var(--wiki-gray-700);
+        color: var(--wiki-text);
+      }
+    }
+
+    .wiki-filter-chip:focus-visible {
+      outline: none;
+      box-shadow: var(--wiki-focus-ring);
+    }
+
+    /* Active state - uses layer color system */
+    .wiki-filter-chip--active {
+      color: var(--wiki-text-inverse);
+      border-color: transparent;
+    }
+
+    /* Layer colors */
+    .wiki-filter-chip--teal.wiki-filter-chip--active {
+      background: var(--wiki-layer-source);
+    }
+
+    .wiki-filter-chip--blue.wiki-filter-chip--active {
+      background: var(--wiki-layer-wiki);
+    }
+
+    .wiki-filter-chip--violet.wiki-filter-chip--active {
+      background: var(--wiki-layer-schema);
+    }
+
+    .wiki-filter-chip--none.wiki-filter-chip--active {
+      background: var(--wiki-layer-wiki);
+    }
+
+    /* Inactive colored chips - subtle hint */
+    .wiki-filter-chip--teal {
+      border-color: var(--wiki-layer-source-border);
+    }
+
+    .wiki-filter-chip--blue {
+      border-color: var(--wiki-layer-wiki-border);
+    }
+
+    .wiki-filter-chip--violet {
+      border-color: var(--wiki-layer-schema-border);
+    }
+
+    .wiki-filter-chip--none {
+      border-color: var(--wiki-border);
+    }
+
+    /* Result count */
+    .wiki-search-filter__count {
+      align-self: center;
+      font-size: var(--wiki-text-sm);
+      color: var(--wiki-text-muted);
+      margin-left: auto;
+      padding-inline: var(--wiki-space-3);
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 48rem) {
+      .wiki-search-filters {
+        gap: var(--wiki-space-2);
+      }
+
+      .wiki-search-filter {
+        gap: var(--wiki-space-1);
+      }
+
+      .wiki-filter-chip {
+        padding: var(--wiki-space-1) var(--wiki-space-2);
+        font-size: 0.65rem;
+      }
+    }
+  }
+</style>

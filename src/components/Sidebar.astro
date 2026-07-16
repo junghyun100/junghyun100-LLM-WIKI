@@ -1,0 +1,550 @@
+---
+// Sidebar.astro - Custom sidebar with 3-layer architecture sections
+import { flattenSidebar } from '@astrojs/starlight/utils/navigation';
+
+const { sidebar } = Astro.locals.starlightRoute;
+
+type SidebarEntry = {
+  type: 'link' | 'group';
+  label: string;
+  href?: string;
+  isCurrent?: boolean;
+  badge?: { text: string; variant?: string };
+  attrs?: Record<string, string>;
+  entries?: SidebarEntry[];
+  collapsed?: boolean;
+  autogenerate?: { directory: string };
+};
+
+const LAYERS = {
+  source: {
+    label: '원본 소스 (Sources)',
+    slugPrefixes: ['sources'],
+    colorToken: '--wiki-layer-source',
+    colorWeakToken: '--wiki-layer-source-weak',
+    bgToken: '--wiki-layer-source-bg',
+    borderToken: '--wiki-layer-source-border',
+    badgeText: 'Source',
+    badgeLabel: '원본 소스',
+    icon: '📄',
+    order: 1,
+  },
+  wiki: {
+    label: '위키 페이지 (Wiki)',
+    slugPrefixes: ['wiki'],
+    colorToken: '--wiki-layer-wiki',
+    colorWeakToken: '--wiki-layer-wiki-weak',
+    bgToken: '--wiki-layer-wiki-bg',
+    borderToken: '--wiki-layer-wiki-border',
+    badgeText: 'Wiki',
+    badgeLabel: '위키',
+    icon: '📖',
+    order: 2,
+    subsections: [
+      { key: 'entities', label: '엔티티 (Entities)', icon: '🏷️', slugPrefix: 'wiki/entities' },
+      { key: 'concepts', label: '개념 (Concepts)', icon: '💡', slugPrefix: 'wiki/concepts' },
+      { key: 'synthesis', label: '종합 (Synthesis)', icon: '🔬', slugPrefix: 'wiki/synthesis' },
+      { key: 'comparisons', label: '비교 (Comparisons)', icon: '⚖️', slugPrefix: 'wiki/comparisons' },
+    ],
+  },
+  schema: {
+    label: '스키마 (Schema)',
+    slugPrefixes: ['schema', 'tools', 'templates', 'prompts', 'claude-md'],
+    colorToken: '--wiki-layer-schema',
+    colorWeakToken: '--wiki-layer-schema-weak',
+    bgToken: '--wiki-layer-schema-bg',
+    borderToken: '--wiki-layer-schema-border',
+    badgeText: 'Schema',
+    badgeLabel: '스키마',
+    icon: '📐',
+    order: 3,
+  },
+} as const;
+
+type LayerKey = keyof typeof LAYERS;
+
+function getLayerForEntry(entry: SidebarEntry, parentSlug?: string): LayerKey | null {
+  if (entry.type === 'link' && entry.href) {
+    const slug = entry.href.replace(/^\/+/, '').replace(/^ko\//, '');
+    for (const [layerKey, config] of Object.entries(LAYERS) as [LayerKey, typeof LAYERS[LayerKey]][]) {
+      if (config.slugPrefixes.some(prefix => slug.startsWith(prefix))) {
+        return layerKey;
+      }
+    }
+  }
+
+  if (entry.type === 'group' && entry.autogenerate) {
+    const dir = entry.autogenerate.directory;
+    if (dir.startsWith('sources')) return 'source';
+    if (dir.startsWith('wiki/')) return 'wiki';
+    if (dir.startsWith('schema') || dir.startsWith('tools') || dir.startsWith('templates') || dir.startsWith('prompts')) return 'schema';
+  }
+
+  if (parentSlug) {
+    for (const [layerKey, config] of Object.entries(LAYERS) as [LayerKey, typeof LAYERS[LayerKey]][]) {
+      if (config.slugPrefixes.some(prefix => parentSlug.startsWith(prefix))) {
+        return layerKey;
+      }
+    }
+  }
+
+  return null;
+}
+
+function getWikiSubsection(entry: SidebarEntry): string | null {
+  if (entry.type !== 'link' || !entry.href) return null;
+  const slug = entry.href.replace(/^\/+/, '').replace(/^ko\//, '');
+  if (slug.startsWith('wiki/entities')) return 'entities';
+  if (slug.startsWith('wiki/concepts')) return 'concepts';
+  if (slug.startsWith('wiki/synthesis')) return 'synthesis';
+  if (slug.startsWith('wiki/comparisons')) return 'comparisons';
+  return null;
+}
+
+function hasCurrentEntry(entries: SidebarEntry[]): boolean {
+  return flattenSidebar(entries).some(e => e.isCurrent);
+}
+
+const layers: Record<LayerKey, SidebarEntry[]> = { source: [], wiki: [], schema: [] };
+
+sidebar.forEach(entry => {
+  const layer = getLayerForEntry(entry);
+  if (layer) {
+    layers[layer].push(entry);
+  } else {
+    layers.wiki.push(entry);
+  }
+});
+
+function getLayerConfig(layer: LayerKey) {
+  return LAYERS[layer];
+}
+
+function renderLayerBadge(layer: LayerKey) {
+  const config = getLayerConfig(layer);
+  return `<span class="wiki-sidebar-layer-badge" data-layer="${layer}" style="background-color: var(${config.bgToken}); color: var(${config.colorToken}); border-color: var(${config.borderToken});" aria-label="${config.badgeLabel}">${config.badgeText}</span>`;
+}
+
+function renderSidebarLink(entry: SidebarEntry, layer: LayerKey, isTopLevel: boolean) {
+  const config = getLayerConfig(layer);
+  const current = entry.isCurrent ? ' current' : '';
+  const nested = !isTopLevel ? ' nested' : '';
+  return `<a href="${entry.href}" ${entry.isCurrent ? 'aria-current="page"' : ''} class="wiki-sidebar-link${current}${nested}" style="--link-layer-color: var(${config.colorToken}); --link-layer-bg: var(${config.bgToken}); --link-layer-border: var(${config.borderToken});"><span class="wiki-sidebar-link__label">${entry.label}</span>${renderLayerBadge(layer)}</a>`;
+}
+
+function renderSidebarGroup(entry: SidebarEntry, layer: LayerKey, depth: number): string {
+  const config = getLayerConfig(layer);
+  const groupHasCurrent = hasCurrentEntry(entry.entries || []);
+  const openAttr = (groupHasCurrent || !entry.collapsed) ? ' open' : '';
+  const badgeHtml = entry.badge ? `<span class="wiki-sidebar-group__badge" style="background-color: var(${config.bgToken}); color: var(${config.colorToken}); border-color: var(${config.borderToken});">${entry.badge.text}</span>` : '';
+  const content = renderSidebarList(entry.entries || [], layer, depth + 1);
+  return `<details class="wiki-sidebar-group"${openAttr}>
+    <summary class="wiki-sidebar-group__summary">
+      <span class="wiki-sidebar-group__label"><span class="wiki-sidebar-group__text">${entry.label}</span>${badgeHtml}</span>
+      ${renderLayerBadge(layer)}
+      <svg class="wiki-sidebar-group__caret" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    </summary>
+    <div class="wiki-sidebar-group__content">${content}</div>
+  </details>`;
+}
+
+function renderSidebarList(entries: SidebarEntry[], layer: LayerKey, depth: number): string {
+  const isTopLevel = depth === 0;
+  const nestedClass = !isTopLevel ? ' nested' : ' top-level';
+  let html = `<ul class="wiki-sublist${nestedClass}">`;
+  entries.forEach((entry, index) => {
+    const key = `${entry.type}-${entry.label}-${index}`;
+    html += `<li class="wiki-sidebar-item">`;
+    if (entry.type === 'link') {
+      html += renderSidebarLink(entry, layer, isTopLevel);
+    } else {
+      html += renderSidebarGroup(entry, layer, depth);
+    }
+    html += `</li>`;
+  });
+  html += `</ul>`;
+  return html;
+}
+
+function renderWikiSubsection(subsection: { key: string; label: string; icon: string; slugPrefix: string }, config: typeof LAYERS[LayerKey], entries: SidebarEntry[]) {
+  const subsectionEntries = entries.filter(e => {
+    if (e.type === 'link') return getWikiSubsection(e) === subsection.key;
+    if (e.type === 'group' && e.autogenerate) return e.autogenerate.directory.includes(subsection.key);
+    return false;
+  });
+  if (subsectionEntries.length === 0) return '';
+  const subsectionHasCurrent = hasCurrentEntry(subsectionEntries);
+  const openAttr = subsectionHasCurrent ? ' open' : '';
+  const content = renderSidebarList(subsectionEntries, 'wiki', 1);
+  return `<details class="wiki-sidebar-subsection"${openAttr}>
+    <summary class="wiki-sidebar-subsection__summary" aria-expanded="${subsectionHasCurrent}">
+      <span class="wiki-sidebar-subsection__icon" aria-hidden="true">${subsection.icon}</span>
+      <span class="wiki-sidebar-subsection__label">${subsection.label}</span>
+      ${renderLayerBadge('wiki')}
+      <svg class="wiki-sidebar-subsection__caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+    </summary>
+    <div class="wiki-sidebar-subsection__content">${content}</div>
+  </details>`;
+}
+
+function renderLayerSection(layer: LayerKey, entries: SidebarEntry[]) {
+  const config = getLayerConfig(layer);
+  const layerHasCurrent = hasCurrentEntry(entries);
+  if (entries.length === 0) return '';
+  const openAttr = layerHasCurrent ? ' open' : '';
+  let content = '';
+  if (layer === 'wiki') {
+    content = config.subsections.map(subsection => renderWikiSubsection(subsection, config, entries)).join('');
+  } else {
+    content = renderSidebarList(entries, layer, 0);
+  }
+  return `<section class="wiki-sidebar-layer" data-layer="${layer}" style="--layer-color: var(${config.colorToken});">
+    <details class="wiki-sidebar-layer__details"${openAttr}>
+      <summary class="wiki-sidebar-layer__summary" aria-expanded="${layerHasCurrent}">
+        <span class="wiki-sidebar-layer__icon" aria-hidden="true">${config.icon}</span>
+        <span class="wiki-sidebar-layer__label">${config.label}</span>
+        ${renderLayerBadge(layer)}
+        <svg class="wiki-sidebar-layer__caret" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+      </summary>
+      <div class="wiki-sidebar-layer__content">${content}</div>
+    </details>
+  </section>`;
+}
+---
+
+<!--
+  Custom LLM Wiki Sidebar — 3-Layer Architecture
+  1. Sources (Teal --wiki-layer-source) — 원본 소스 문서
+  2. Wiki (Blue --wiki-layer-wiki) — LLM 유지관리 지식 (Entities, Concepts, Synthesis, Comparisons)
+  3. Schema (Violet --wiki-layer-schema) — 거버넌스 (CLAUDE.md, Templates, Prompts)
+-->
+
+<nav class="wiki-sidebar-wrapper" aria-label="LLM Wiki 사이드바 - 3계층 구조">
+  {renderLayerSection('source', layers.source)}
+  {renderLayerSection('wiki', layers.wiki)}
+  {renderLayerSection('schema', layers.schema)}
+</nav>
+
+<style>
+  @layer components {
+    .wiki-sidebar-wrapper {
+      height: 100%;
+      overflow-y: auto;
+      padding: var(--wiki-space-4);
+      font-family: var(--wiki-font-sans);
+      font-size: var(--wiki-text-sm);
+      line-height: var(--wiki-leading-normal);
+      color: var(--wiki-text);
+    }
+
+    .wiki-sidebar-layer {
+      margin-bottom: var(--wiki-space-4);
+      border-radius: var(--wiki-radius-md);
+      background: var(--wiki-surface);
+      border: 1px solid var(--wiki-border);
+      overflow: hidden;
+    }
+
+    .wiki-sidebar-layer__details {
+      border: none;
+    }
+
+    .wiki-sidebar-layer__summary {
+      display: flex;
+      align-items: center;
+      gap: var(--wiki-space-3);
+      padding: var(--wiki-space-3) var(--wiki-space-4);
+      cursor: pointer;
+      user-select: none;
+      background: var(--wiki-surface);
+      border-bottom: 1px solid var(--wiki-border);
+      transition: background-color var(--wiki-duration-fast) var(--wiki-ease);
+    }
+
+    .wiki-sidebar-layer__summary:hover {
+      background: var(--wiki-gray-50);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .wiki-sidebar-layer__summary:hover {
+        background: var(--wiki-gray-800);
+      }
+    }
+
+    .wiki-sidebar-layer__summary:focus-visible {
+      outline: none;
+      box-shadow: var(--wiki-focus-ring);
+      border-radius: var(--wiki-radius-sm);
+    }
+
+    .wiki-sidebar-layer__icon {
+      font-size: var(--wiki-text-lg);
+      flex-shrink: 0;
+    }
+
+    .wiki-sidebar-layer__label {
+      flex: 1;
+      font-size: var(--wiki-text-sm);
+      font-weight: 600;
+      color: var(--wiki-text);
+      letter-spacing: 0.01em;
+    }
+
+    .wiki-sidebar-layer__caret {
+      flex-shrink: 0;
+      color: var(--wiki-text-muted);
+      transition: transform var(--wiki-duration-normal) var(--wiki-ease);
+    }
+
+    .wiki-sidebar-layer__details[open] > .wiki-sidebar-layer__summary .wiki-sidebar-layer__caret {
+      transform: rotate(90deg);
+    }
+
+    .wiki-sidebar-layer__content {
+      padding: var(--wiki-space-2) 0;
+      animation: wiki-collapse-down var(--wiki-duration-normal) var(--wiki-ease-out);
+    }
+
+    @keyframes wiki-collapse-down {
+      from {
+        opacity: 0;
+        transform: translateY(-var(--wiki-space-2));
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .wiki-sidebar-subsection {
+      margin: var(--wiki-space-2) var(--wiki-space-3);
+      border-radius: var(--wiki-radius-sm);
+      background: var(--wiki-gray-50);
+      border: 1px solid var(--wiki-border);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .wiki-sidebar-subsection {
+        background: var(--wiki-gray-800);
+        border-color: var(--wiki-border);
+      }
+    }
+
+    .wiki-sidebar-subsection__summary {
+      display: flex;
+      align-items: center;
+      gap: var(--wiki-space-2);
+      padding: var(--wiki-space-2) var(--wiki-space-3);
+      cursor: pointer;
+      user-select: none;
+      border-radius: var(--wiki-radius-sm);
+      transition: background-color var(--wiki-duration-fast) var(--wiki-ease);
+    }
+
+    .wiki-sidebar-subsection__summary:hover {
+      background: var(--wiki-gray-100);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .wiki-sidebar-subsection__summary:hover {
+        background: var(--wiki-gray-700);
+      }
+    }
+
+    .wiki-sidebar-subsection__summary:focus-visible {
+      outline: none;
+      box-shadow: var(--wiki-focus-ring);
+    }
+
+    .wiki-sidebar-subsection__icon {
+      font-size: var(--wiki-text-sm);
+      flex-shrink: 0;
+    }
+
+    .wiki-sidebar-subsection__label {
+      flex: 1;
+      font-size: var(--wiki-text-sm);
+      font-weight: 500;
+      color: var(--wiki-text);
+    }
+
+    .wiki-sidebar-subsection__caret {
+      flex-shrink: 0;
+      color: var(--wiki-text-muted);
+      transition: transform var(--wiki-duration-normal) var(--wiki-ease);
+    }
+
+    .wiki-sidebar-subsection[open] > .wiki-sidebar-subsection__summary .wiki-sidebar-subsection__caret {
+      transform: rotate(90deg);
+    }
+
+    .wiki-sidebar-subsection__content {
+      padding: var(--wiki-space-2) var(--wiki-space-2) var(--wiki-space-2) var(--wiki-space-4);
+      animation: wiki-collapse-down var(--wiki-duration-normal) var(--wiki-ease-out);
+    }
+
+    .wiki-sublist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .wiki-sublist.nested {
+      margin-left: var(--wiki-space-3);
+      padding-left: var(--wiki-space-3);
+      border-left: 1px solid var(--wiki-border);
+    }
+
+    .wiki-sidebar-item {
+      margin: var(--wiki-space-1) 0;
+    }
+
+    .wiki-sidebar-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--wiki-space-2);
+      padding: var(--wiki-space-2) var(--wiki-space-3);
+      border-radius: var(--wiki-radius-sm);
+      text-decoration: none;
+      color: var(--wiki-text);
+      transition: all var(--wiki-duration-fast) var(--wiki-ease);
+      border-left: 3px solid transparent;
+    }
+
+    .wiki-sidebar-link.nested {
+      padding-inline-start: var(--wiki-space-4);
+    }
+
+    .wiki-sidebar-link:hover {
+      background: var(--link-layer-bg);
+      color: var(--link-layer-color);
+      border-left-color: var(--link-layer-border);
+    }
+
+    .wiki-sidebar-link:focus-visible {
+      outline: none;
+      box-shadow: var(--wiki-focus-ring);
+    }
+
+    .wiki-sidebar-link.current {
+      background: var(--link-layer-bg);
+      color: var(--link-layer-color);
+      border-left-color: var(--link-layer-border);
+      font-weight: 600;
+    }
+
+    .wiki-sidebar-link__label {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .wiki-sidebar-layer-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--wiki-space-1) var(--wiki-space-2);
+      border-radius: var(--wiki-radius-full);
+      font-size: var(--wiki-text-xs);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      border: 1px solid;
+      flex-shrink: 0;
+    }
+
+    .wiki-sidebar-group {
+      margin: var(--wiki-space-1) 0;
+      border-radius: var(--wiki-radius-sm);
+      overflow: hidden;
+    }
+
+    .wiki-sidebar-group__summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--wiki-space-2);
+      padding: var(--wiki-space-2) var(--wiki-space-3);
+      cursor: pointer;
+      user-select: none;
+      border-radius: var(--wiki-radius-sm);
+      background: var(--wiki-gray-50);
+      border: 1px solid var(--wiki-border);
+      transition: background-color var(--wiki-duration-fast) var(--wiki-ease);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .wiki-sidebar-group__summary {
+        background: var(--wiki-gray-800);
+      }
+    }
+
+    .wiki-sidebar-group__summary:hover {
+      filter: brightness(0.98);
+    }
+
+    .wiki-sidebar-group__summary:focus-visible {
+      outline: none;
+      box-shadow: var(--wiki-focus-ring);
+    }
+
+    .wiki-sidebar-group__label {
+      display: flex;
+      align-items: center;
+      gap: var(--wiki-space-2);
+      flex: 1;
+      font-size: var(--wiki-text-sm);
+      font-weight: 500;
+      color: var(--wiki-text);
+    }
+
+    .wiki-sidebar-group__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.125rem var(--wiki-space-2);
+      border-radius: var(--wiki-radius-full);
+      font-size: var(--wiki-text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .wiki-sidebar-group__caret {
+      flex-shrink: 0;
+      color: var(--wiki-text-muted);
+      transition: transform var(--wiki-duration-normal) var(--wiki-ease);
+    }
+
+    .wiki-sidebar-group[open] > .wiki-sidebar-group__summary .wiki-sidebar-group__caret {
+      transform: rotate(90deg);
+    }
+
+    .wiki-sidebar-group__content {
+      padding-top: var(--wiki-space-2);
+      animation: wiki-collapse-down var(--wiki-duration-normal) var(--wiki-ease-out);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .wiki-sidebar-layer__content,
+      .wiki-sidebar-subsection__content,
+      .wiki-sidebar-group__content {
+        animation: none;
+      }
+      .wiki-sidebar-layer__caret,
+      .wiki-sidebar-subsection__caret,
+      .wiki-sidebar-group__caret {
+        transition: none;
+      }
+    }
+
+    @media print {
+      .wiki-sidebar-wrapper {
+        display: none;
+      }
+    }
+  }
+</style>

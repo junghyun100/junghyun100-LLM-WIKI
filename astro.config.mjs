@@ -1,4 +1,3 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
@@ -62,6 +61,9 @@ export default defineConfig({
 			lastUpdated: true,
 			pagefind: true,
 			customCss: ['./src/styles/custom.css'],
+			components: {
+				Search: './src/components/Search.astro',
+			},
 		}),
 	],
 });
