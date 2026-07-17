@@ -332,11 +332,11 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--wiki-space-4);
 }
 
-h1 { font-size: var(--wiki-text-3xl); }
-h2 { font-size: var(--wiki-text-2xl); border-bottom: 1px solid var(--wiki-border); padding-bottom: var(--wiki-space-3); }
-h3 { font-size: var(--wiki-text-xl); }
-h4 { font-size: var(--wiki-text-lg); }
-h5 { font-size: var(--wiki-text-base); }
+h1 { font-size: var(--wiki-text-2xl); }
+h2 { font-size: var(--wiki-text-xl); border-bottom: 1px solid var(--wiki-border); padding-bottom: var(--wiki-space-3); }
+h3 { font-size: var(--wiki-text-lg); }
+h4 { font-size: var(--wiki-text-base); }
+h5 { font-size: var(--wiki-text-xs); }
 h6 { font-size: var(--wiki-text-xs); }
 
 h1:first-child,
