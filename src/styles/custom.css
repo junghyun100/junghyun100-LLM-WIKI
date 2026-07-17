@@ -905,3 +905,13 @@ html[data-theme='light'] .wiki-xref-sidebar {
 html[data-theme='dark'] .wiki-xref-sidebar {
     color: var(--wiki-gray-50);
 }
+
+/* Ensure large text (e.g., section titles in sidebar) is visible */
+html[data-theme='light'] .astro-ojxuodky.large,
+html[data-theme='light'] .large.astro-ojxuodky {
+    color: var(--wiki-gray-900);
+}
+html[data-theme='dark'] .astro-ojxuodky.large,
+html[data-theme='dark'] .large.astro-ojxuodky {
+    color: var(--wiki-gray-50);
+}
