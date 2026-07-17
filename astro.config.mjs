@@ -7,7 +7,7 @@ export default defineConfig({
 	base: '/junghyun100-LLM-WIKI',
 	integrations: [
 		starlight({
-			title: 'LLM Wiki',
+			title: 'LLM-WIKI',
 			description: 'LLM이 유지관리하는 지속적 지식 베이스 — 원본 소스 → 위키 → 스키마 3계층 구조',
 			logo: {
 				light: './src/assets/logo-light.svg',

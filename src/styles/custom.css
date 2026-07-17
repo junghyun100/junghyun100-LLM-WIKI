@@ -899,10 +899,16 @@ html.wiki-reading-mode .wiki-layer-strip {
 }
 
 /* Ensure sidebar text is visible in light and dark themes */
-html[data-theme='light'] .wiki-xref-sidebar {
+html[data-theme='light'] .wiki-xref-sidebar,
+html[data-theme='light'] .wiki-xref-sidebar__title,
+html[data-theme='light'] .wiki-xref-sidebar__type,
+html[data-theme='light'] .wiki-xref-sidebar__link {
     color: var(--wiki-gray-900);
 }
-html[data-theme='dark'] .wiki-xref-sidebar {
+html[data-theme='dark'] .wiki-xref-sidebar,
+html[data-theme='dark'] .wiki-xref-sidebar__title,
+html[data-theme='dark'] .wiki-xref-sidebar__type,
+html[data-theme='dark'] .wiki-xref-sidebar__link {
     color: var(--wiki-gray-50);
 }
 
@@ -914,4 +920,14 @@ html[data-theme='light'] .large.astro-ojxuodky {
 html[data-theme='dark'] .astro-ojxuodky.large,
 html[data-theme='dark'] .large.astro-ojxuodky {
     color: var(--wiki-gray-50);
+}
+
+/* Hover improvements for sidebar links in light/dark themes */
+html[data-theme='light'] .wiki-xref-sidebar__link:hover {
+    background: var(--wiki-layer-xref-bg);
+    color: var(--wiki-layer-xref);
+}
+html[data-theme='dark'] .wiki-xref-sidebar__link:hover {
+    background: var(--wiki-layer-xref-bg);
+    color: var(--wiki-layer-xref);
 }

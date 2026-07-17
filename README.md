@@ -610,7 +610,7 @@ grep -r "^---$" wiki/ -A 20 | ...
 - `npm run build` → `dist/` → GitHub Pages 업로드
 
 #### 3. URL
-**https://junghyun100.github.io/junghyun100-LLM-WIKI/**
+**https://junghyun100.github.io/junghyun100-LLM-WIKI/ko/**
 
 ### 로컬 검증
 ```bash
@@ -786,7 +786,7 @@ chore: 설정/빌드
 | 링크 | 설명 |
 |------|------|
 | [GitHub 저장소](https://github.com/junghyun100/junghyun100-LLM-WIKI) | 소스 코드, 이슈, PR |
-| [배포 사이트](https://junghyun100.github.io/junghyun100-LLM-WIKI/) | GitHub Pages 공개 사이트 |
+| [배포 사이트](https://junghyun100.github.io/junghyun100-LLM-WIKI/ko/) | GitHub Pages 공개 사이트 |
 | [Starlight 공식 문서](https://starlight.astro.build/) | 테마 문서·가이드 |
 | [Astro 공식 문서](https://astro.build/) | 프레임워크 문서 |
 | [LLM Wiki 스키마 계약](src/content/docs/ko/schema/CLAUDE.md) | LLM 운영 규칙 원문 |
