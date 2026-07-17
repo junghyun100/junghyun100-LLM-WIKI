@@ -924,10 +924,10 @@ html[data-theme='dark'] .large.astro-ojxuodky {
 
 /* Hover improvements for sidebar links in light/dark themes */
 html[data-theme='light'] .wiki-xref-sidebar__link:hover {
-    background: var(--wiki-layer-xref-bg);
-    color: var(--wiki-layer-xref);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
 }
 html[data-theme='dark'] .wiki-xref-sidebar__link:hover {
-    background: var(--wiki-layer-xref-bg);
-    color: var(--wiki-layer-xref);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
 }
