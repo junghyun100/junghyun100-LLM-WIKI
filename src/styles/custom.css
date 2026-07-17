@@ -897,3 +897,11 @@ html.wiki-reading-mode .wiki-layer-strip {
   a { text-decoration: underline; color: var(--wiki-text); }
   .sl-code-block { border: 1px solid var(--wiki-border); page-break-inside: avoid; }
 }
+
+/* Ensure sidebar text is visible in light and dark themes */
+html[data-theme='light'] .wiki-xref-sidebar {
+    color: var(--wiki-gray-900);
+}
+html[data-theme='dark'] .wiki-xref-sidebar {
+    color: var(--wiki-gray-50);
+}
