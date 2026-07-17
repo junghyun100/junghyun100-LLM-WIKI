@@ -33,7 +33,7 @@ LLM Wiki 전체 콘텐츠 카탈로그입니다. 모든 페이지는 `last_updat
 ## 원본 소스 (Sources) — 수집일자순
 
 | ID | 제목 | 저자 | 연도 | 유형 | 태그 | 수집일 |
-|----|------|------|------|------|------|------|------|--------|
+|---|---|---|---|---|---|---|
 | src-001 | Attention Is All You Need | Vaswani et al. | 2017 | paper | foundational, attention, transformer | 2025-07-16 |
 | src-002 | GPT-4 Technical Report | OpenAI | 2023 | paper | gpt-4, multimodal, closed-source | 2025-07-16 |
 | src-003 | Scaling Laws for Neural Language Models | Kaplan et al. | 2020 | paper | scaling-laws, kaplan | 2025-07-10 |
