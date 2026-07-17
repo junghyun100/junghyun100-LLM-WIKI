@@ -152,6 +152,9 @@
   --wiki-ease: cubic-bezier(0.4, 0, 0.2, 1);
   --wiki-ease-out: cubic-bezier(0, 0, 0.2, 1);
   --wiki-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --color-primary: #3182f6;
+  --color-primary-hover: #2563eb;
+  --color-on-primary: #ffffff
 }
 
 /* Dark mode — semantic inversion, not just color flip */
@@ -329,8 +332,8 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: var(--wiki-space-4);
 }
 
-h1 { font-size: var(--wiki-text-4xl); }
-h2 { font-size: var(--wiki-text-3xl); border-bottom: 1px solid var(--wiki-border); padding-bottom: var(--wiki-space-3); }
+h1 { font-size: var(--wiki-text-3xl); }
+h2 { font-size: var(--wiki-text-2xl); border-bottom: 1px solid var(--wiki-border); padding-bottom: var(--wiki-space-3); }
 h3 { font-size: var(--wiki-text-2xl); }
 h4 { font-size: var(--wiki-text-xl); }
 h5 { font-size: var(--wiki-text-lg); }
@@ -485,9 +488,9 @@ h3:first-child {
 }
 
 .wiki-layer-badge[data-layer="source"] {
-  background: var(--wiki-layer-source-bg);
-  color: var(--wiki-layer-source);
-  border: 1px solid var(--wiki-layer-source-border);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: 1px solid var(--color-primary);
 }
 .wiki-layer-badge[data-layer="wiki"] {
   background: var(--wiki-layer-wiki-bg);
