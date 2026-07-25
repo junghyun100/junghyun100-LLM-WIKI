@@ -13,6 +13,20 @@ description: 'LLM Wiki 연대기 작업 로그 — 파싱 가능 형식으로 �
 
 ---
 
+## [2026-07-25] ingest | src-006 Autonomous Product Discovery-to-Delivery Protocol 수집 | 영향 2개
+
+**소스**: `sources/src-006-autonomous-product-discovery-delivery-protocol.md` (Junghyun, 2026)
+
+**생성 페이지**:
+- `wiki/concepts/2026-07-25-autonomous-product-discovery-delivery-protocol.md` — 프로토콜 개념 페이지 (상태 머신, 결정 분류, 가중 평가 수식, 8단계 워크플로 등)
+- `sources/src-006-autonomous-product-discovery-delivery-protocol.md` — 원본 프로토콜 문서 전체 보관
+
+**index.md** 갱신: 개념 1개 추가, 소스 1개 추가, 통계 업데이트 (총 페이지 8개, 총 소스 6개)
+
+**모순**: 없음
+
+---
+
 ## [2025-07-16] maintenance | 프로젝트 초기 설정 및 스키마 v1.0.0 배포 | 영향 0개
 
 초기 프로젝트 구조 생성 완료:
@@ -130,4 +144,10 @@ ko/
 
 ---
 
-*다음 예정: 2025-07-23 주간 Lint*
+## [2026-07-25] schema | 프로토콜 문서 스키마 반영 준비 | 영향 0개
+
+**비고**: src-006 프로토콜 문서는 `schema/` 폴더의 운영 계약서와 다름. 별도 문서로 관리하며, 향후 `schema/protocols/` 하위 디렉토리 신설 시 이관 예정.
+
+---
+
+*다음 예정: 2026-08-01 주간 Lint*
