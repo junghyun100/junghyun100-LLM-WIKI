@@ -1,0 +1,52 @@
+{
+  "name": "@llm-wiki/components",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./components": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "quartz": {
+    "name": "llm-wiki-components",
+    "displayName": "LLM Wiki Custom Components",
+    "description": "Custom components for LLM Wiki: Header, SidebarNav, TableOfContents, SiteFooter",
+    "version": "1.0.0",
+    "category": "component",
+    "components": {
+      "Header": {
+        "displayName": "Header",
+        "description": "Modern header with logo, nav tabs, search, and toolbar",
+        "defaultPosition": "header",
+        "defaultPriority": 0
+      },
+      "SidebarNav": {
+        "displayName": "SidebarNav",
+        "description": "Collapsible sidebar navigation with icons",
+        "defaultPosition": "left",
+        "defaultPriority": 0
+      },
+      "TableOfContents": {
+        "displayName": "TableOfContents",
+        "description": "Scroll-spy table of contents with mobile bottom sheet",
+        "defaultPosition": "right",
+        "defaultPriority": 0
+      },
+      "SiteFooter": {
+        "displayName": "SiteFooter",
+        "description": "Multi-column footer with brand, navigation, and copyright",
+        "defaultPosition": "footer",
+        "defaultPriority": 0
+      }
+    }
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^7.0.2"
+  }
+}

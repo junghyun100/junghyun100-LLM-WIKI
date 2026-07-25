@@ -1,0 +1,9 @@
+// ============================================================================
+// LLM Wiki - Custom Styles
+// Import design tokens and any custom overrides
+// ============================================================================
+
+@use "./design-tokens.scss" as *;
+
+// Additional custom styles go here
+// The design system is fully defined in design-tokens.scss and imported by base.scss

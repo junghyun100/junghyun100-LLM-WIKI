@@ -1,0 +1,327 @@
+@use "sass:map";
+@use "sass:color";
+@use "sass:string" as str;
+
+/**
+ * LLM Wiki - Design Tokens
+ * Modern frontend design system for Korean LLM knowledge base
+ *
+ * This replaces the Quartz default variables with a cohesive,
+ * purpose-built design system optimized for technical content.
+ */
+
+// ============================================================================
+// BREAKPOINTS
+// ============================================================================
+
+$breakpoints: (
+  sm:  480px,   // Mobile
+  md:  768px,   // Tablet
+  lg:  1024px,  // Desktop
+  xl:  1280px,  // Wide desktop
+  2xl: 1536px,  // Ultra-wide
+);
+
+@function bp($name) {
+  @return map.get($breakpoints, $name);
+}
+
+// Media query helpers
+$mq-sm:  "(min-width: #{bp(sm)})";
+$mq-md:  "(min-width: #{bp(md)})";
+$mq-lg:  "(min-width: #{bp(lg)})";
+$mq-xl:  "(min-width: #{bp(xl)})";
+$mq-2xl: "(min-width: #{bp(2xl)})";
+
+$mq-max-sm:  "(max-width: #{bp(sm) - 1px})";
+$mq-max-md:  "(max-width: #{bp(md) - 1px})";
+$mq-max-lg:  "(max-width: #{bp(lg) - 1px})";
+$mq-max-xl:  "(max-width: #{bp(xl) - 1px})";
+
+// ============================================================================
+// COLOR SYSTEM
+// ============================================================================
+
+// --- Semantic Color Roles (Dark Mode First) ---
+
+$colors-dark: (
+  // Base surfaces - layered depth
+  surface-0:  #0a0a0b,  // Deep background
+  surface-1:  #141416,  // Card/panel background
+  surface-2:  #1c1c1f,  // Elevated/sidebar background
+  surface-3:  #26262a,  // Hover/active states
+
+  // Text hierarchy
+  text-primary:   #fafafa,    // Headlines, primary content
+  text-secondary: #a1a1aa,    // Body, descriptions
+  text-muted:     #71717a,    // Meta, timestamps, disabled
+  text-inverse:   #0a0a0b,    // On accent surfaces
+
+  // Accent (single, purposeful)
+  accent:         #00d4aa,    // Primary actions, links, focus
+  accent-hover:   #00eeb8,
+  accent-muted:   rgba(0, 212, 170, 0.12),  // Badge backgrounds
+  accent-strong:  #00b894,    // Active/pressed
+
+  // Semantic status (used sparingly, inline only)
+  success:   #22c55e,
+  warning:   #f59e0b,
+  error:     #ef4444,
+  info:      #3b82f6,
+
+  // Borders & dividers
+  border-subtle:  rgba(255, 255, 255, 0.06),
+  border-default: rgba(255, 255, 255, 0.12),
+  border-strong:  rgba(255, 255, 255, 0.20),
+
+  // Deprecated Quartz compat (mapped to new system)
+  light:      #0a0a0b,
+  lightgray:  #26262a,
+  gray:       #71717a,
+  darkgray:   #a1a1aa,
+  dark:       #fafafa,
+  secondary:  #00d4aa,
+  tertiary:   #00eeb8,
+  highlight:  rgba(0, 212, 170, 0.12),
+  textHighlight: #00d4aa33,
+);
+
+// --- Light Mode Overrides ---
+
+$colors-light: (
+  surface-0:  #fafafa,
+  surface-1:  #ffffff,
+  surface-2:  #f4f4f5,
+  surface-3:  #e4e4e7,
+
+  text-primary:   #0a0a0b,
+  text-secondary: #3f3f46,
+  text-muted:     #71717a,
+  text-inverse:   #fafafa,
+
+  accent:         #00b894,
+  accent-hover:   #00d4aa,
+  accent-muted:   rgba(0, 184, 148, 0.12),
+  accent-strong:  #009977,
+
+  success:   #16a34a,
+  warning:   #d97706,
+  error:     #dc2626,
+  info:      #2563eb,
+
+  border-subtle:  rgba(0, 0, 0, 0.06),
+  border-default: rgba(0, 0, 0, 0.10),
+  border-strong:  rgba(0, 0, 0, 0.15),
+
+  // Quartz compat
+  light:      #fafafa,
+  lightgray:  #e4e4e7,
+  gray:       #71717a,
+  darkgray:   #3f3f46,
+  dark:       #0a0a0b,
+  secondary:  #00b894,
+  tertiary:   #00d4aa,
+  highlight:  rgba(0, 184, 148, 0.12),
+  textHighlight: #00b89433,
+);
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+$fonts: (
+  display: unquote("'Space Grotesk', 'Noto Sans KR', system-ui, sans-serif"),
+  body:    unquote("'IBM Plex Sans', 'Noto Sans KR', system-ui, sans-serif"),
+  mono:    unquote("'JetBrains Mono', 'IBM Plex Mono', 'Noto Sans Mono KR', monospace"),
+);
+
+// Fluid type scale using clamp() - values stored as strings for interpolation
+$type-scale: (
+  xs:    (min: "0.7rem",    ideal: "0.65rem + 0.25vw",    max: "0.75rem"),   // 11-12px
+  sm:    (min: "0.8125rem", ideal: "0.75rem + 0.3125vw", max: "0.875rem"),  // 13-14px
+  base:  (min: "0.9375rem", ideal: "0.875rem + 0.3125vw", max: "1rem"),      // 15-16px
+  lg:    (min: "1.0625rem", ideal: "1rem + 0.3125vw",    max: "1.125rem"),  // 17-18px
+  xl:    (min: "1.25rem",   ideal: "1.125rem + 0.625vw", max: "1.5rem"),    // 20-24px
+  2xl:   (min: "1.5rem",    ideal: "1.25rem + 1.25vw",   max: "2rem"),      // 24-32px
+  3xl:   (min: "1.875rem",  ideal: "1.5rem + 1.875vw",   max: "3rem"),      // 30-48px
+  4xl:   (min: "2.25rem",   ideal: "1.75rem + 2.5vw",    max: "4rem"),      // 36-64px
+);
+
+@function fluid-type($size) {
+  $val: map.get($type-scale, $size);
+  @if $val == null {
+    @error "Unknown type size: #{$size}";
+  }
+  @return unquote("clamp(#{map.get($val, min)}, #{map.get($val, ideal)}, #{map.get($val, max)})");
+}
+
+$weights: (
+  normal:     400,
+  medium:     500,
+  semibold:   600,
+  bold:       700,
+);
+
+$leading: (
+  tight:     1.15,  // Headlines
+  snug:      1.35,  // Subheads, UI labels
+  normal:    1.65,  // Body text
+  relaxed:   1.8,   // Long-form reading
+  code:      1.6,   // Code blocks
+);
+
+// ============================================================================
+// SPACING SYSTEM
+// ============================================================================
+
+$spacing: (
+  0:   0,
+  1:   0.25rem,  // 4px
+  2:   0.5rem,   // 8px
+  3:   0.75rem,  // 12px
+  4:   1rem,     // 16px
+  5:   1.25rem,  // 20px
+  6:   1.5rem,   // 24px
+  8:   2rem,     // 32px
+  10:  2.5rem,   // 40px
+  12:  3rem,     // 48px
+  16:  4rem,     // 64px
+  20:  5rem,     // 80px
+  24:  6rem,     // 96px
+);
+
+@function space($key) {
+  @return map.get($spacing, $key);
+}
+
+// ============================================================================
+// LAYOUT DIMENSIONS
+// ============================================================================
+
+$layout: (
+  width-prose:   42rem,   // 672px - optimal reading width
+  width-wide:    64rem,   // 1024px - tables, code, diagrams
+  width-full:    100%,
+  width-sidebar: 16rem,   // 256px - navigation panel
+  width-toc:     12rem,   // 192px - table of contents
+
+  header-height: 4rem,    // 64px
+  top-spacing:   6rem,    // Space below fixed header
+
+  radius-sm:     4px,
+  radius-md:     8px,
+  radius-lg:     12px,
+  radius-xl:     16px,
+  radius-full:   9999px,
+
+  shadow-sm:  "0 1px 2px rgba(0, 0, 0, 0.05)",
+  shadow-md:  "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+  shadow-lg:  "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+  shadow-xl:  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+);
+
+// ============================================================================
+// MOTION / ANIMATION
+// ============================================================================
+
+$motion: (
+  duration-instant:  0ms,
+  duration-fast:     100ms,   // Hover, focus
+  duration-normal:   200ms,   // Panel open/close, tab switch
+  duration-slow:     300ms,   // Drawer, modal, page transition
+  duration-slower:   500ms,   // Complex state changes
+
+  ease-out:     cubic-bezier(0.25, 0.46, 0.45, 0.94),
+  ease-in-out:  cubic-bezier(0.4, 0, 0.2, 1),
+  ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1),
+);
+
+// ============================================================================
+// Z-INDEX SCALE
+// ============================================================================
+
+$z-index: (
+  base:        0,
+  header:      100,
+  sidebar:     200,
+  toc:         200,
+  dropdown:    300,
+  modal:       400,
+  drawer:      500,
+  toast:       600,
+  tooltip:     700,
+  skip-link:   9999,
+);
+
+// ============================================================================
+// CSS VARIABLE GENERATION (for runtime theming)
+// ============================================================================
+
+@function css-var($name, $value) {
+  @return "--#{$name}: #{$value};";
+}
+
+// Generate all CSS custom properties
+:root {
+  // Breakpoints (for JS access)
+  @each $name, $value in $breakpoints {
+    #{"--bp-#{$name}"}: #{$value};
+  }
+
+  // Dark mode colors (default)
+  @each $name, $value in $colors-dark {
+    #{"--color-#{$name}"}: #{$value};
+  }
+
+  // Typography
+  --font-display: #{nth(map.get($fonts, display), 1)};
+  --font-body: #{nth(map.get($fonts, body), 1)};
+  --font-mono: #{nth(map.get($fonts, mono), 1)};
+
+  @each $size, $value in $type-scale {
+    #{"--text-#{$size}"}: #{fluid-type($size)};
+  }
+
+  @each $weight, $value in $weights {
+    #{"--weight-#{$weight}"}: #{$value};
+  }
+
+  @each $name, $value in $leading {
+    #{"--leading-#{$name}"}: #{$value};
+  }
+
+  // Spacing
+  @each $key, $value in $spacing {
+    #{"--space-#{$key}"}: #{$value};
+  }
+
+  // Layout
+  @each $name, $value in $layout {
+    #{"--layout-#{$name}"}: #{$value};
+  }
+
+  // Motion
+  @each $name, $value in $motion {
+    #{"--motion-#{$name}"}: #{$value};
+  }
+
+  // Z-index
+  @each $name, $value in $z-index {
+    #{"--z-#{$name}"}: #{$value};
+  }
+}
+
+// Light mode override
+[data-theme="light"] {
+  @each $name, $value in $colors-light {
+    #{"--color-#{$name}"}: #{$value};
+  }
+}
+
+// Prevent transition flash on initial load
+html.theme-loading *,
+html.theme-loading *::before,
+html.theme-loading *::after {
+  transition: none !important;
+  animation: none !important;
+}
