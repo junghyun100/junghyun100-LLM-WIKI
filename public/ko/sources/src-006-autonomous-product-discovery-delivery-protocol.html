@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr"><head><title>Autonomous Product Discovery-to-Delivery Protocol</title><meta charset="utf-8"/><link rel="preload" href="../../index-805f18ba.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto Sans KR:wght@400;700&amp;family=Noto Sans KR:ital,wght@0,400;0,600;1,400;1,600&amp;family=JetBrains Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="LLM Wiki"/><meta property="og:title" content="Autonomous Product Discovery-to-Delivery Protocol"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Autonomous Product Discovery-to-Delivery Protocol"/><meta name="twitter:description" content="Autonomous Product Discovery-to-Delivery Protocol 버전: 1.0 날짜: 2026-07-25 작성자: Junghyun 목적: 제품 아이디어를 구조화된 탐색 → 결정 → 사양 → 구현 → 배포까지 자동화된 오케스트레이션으로 연결하는 재사용 가능한 프로토콜 0."/><meta property="og:description" content="Autonomous Product Discovery-to-Delivery Protocol 버전: 1.0 날짜: 2026-07-25 작성자: Junghyun 목적: 제품 아이디어를 구조화된 탐색 → 결정 → 사양 → 구현 → 배포까지 자동화된 오케스트레이션으로 연결하는 재사용 가능한 프로토콜 0."/><meta property="og:image:alt" content="Autonomous Product Discovery-to-Delivery Protocol 버전: 1.0 날짜: 2026-07-25 작성자: Junghyun 목적: 제품 아이디어를 구조화된 탐색 → 결정 → 사양 → 구현 → 배포까지 자동화된 오케스트레이션으로 연결하는 재사용 가능한 프로토콜 0."/><meta property="twitter:domain" content="https://junghyun100.github.io/junghyun100-LLM-WIKI/"/><meta property="og:url" content="https://https//junghyun100.github.io/junghyun100-LLM-WIKI/ko/sources/src-006-autonomous-product-discovery-delivery-protocol"/><meta property="twitter:url" content="https://https//junghyun100.github.io/junghyun100-LLM-WIKI/ko/sources/src-006-autonomous-product-discovery-delivery-protocol"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Autonomous Product Discovery-to-Delivery Protocol 버전: 1.0 날짜: 2026-07-25 작성자: Junghyun 목적: 제품 아이디어를 구조화된 탐색 → 결정 → 사양 → 구현 → 배포까지 자동화된 오케스트레이션으로 연결하는 재사용 가능한 프로토콜 0."/><meta name="generator" content="Quartz"/><link href="../../index-805f18ba.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://https://junghyun100.github.io/junghyun100-LLM-WIKI//ko/sources/src-006-autonomous-product-discovery-delivery-protocol-og-image.webp"/><meta property="og:image:url" content="https://https://junghyun100.github.io/junghyun100-LLM-WIKI//ko/sources/src-006-autonomous-product-discovery-delivery-protocol-og-image.webp"/><meta name="twitter:image" content="https://https://junghyun100.github.io/junghyun100-LLM-WIKI//ko/sources/src-006-autonomous-product-discovery-delivery-protocol-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="ko/sources/src-006-autonomous-product-discovery-delivery-protocol" data-basepath="//junghyun100.github.io/junghyun100-LLM-WIKI"><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">LLM Wiki</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="검색" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>검색</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="검색어를 입력하세요" placeholder="검색어를 입력하세요"/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="다크 모드"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="다크 모드"><title>다크 모드</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="라이트 모드"><title>라이트 모드</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="리더 모드"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="리더 모드"><title>리더 모드</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-9" aria-label="탐색기"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>탐색기</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-9" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../ko/">전체 인덱스</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../ko/sources/">원본 소스 인덱스</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Autonomous Product Discovery-to-Delivery Protocol</a></div></nav><h1 class="article-title">Autonomous Product Discovery-to-Delivery Protocol</h1><details class="note-properties metadata-container" open data-collapsed="false"><summary class="note-properties-header"><span class="note-properties-title">Properties</span><span class="note-properties-count">2</span></summary><table class="note-properties-table"><tbody><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">tags</td><td class="note-properties-value metadata-property-value"><span class="note-properties-tags"><a href="../../tags/protocol" class="internal internal-link tag-link">protocol</a><span class="note-properties-separator">, </span><a href="../../tags/product-development" class="internal internal-link tag-link">product-development</a><span class="note-properties-separator">, </span><a href="../../tags/ai-orchestration" class="internal internal-link tag-link">ai-orchestration</a><span class="note-properties-separator">, </span><a href="../../tags/autonomous-workflow" class="internal internal-link tag-link">autonomous-workflow</a><span class="note-properties-separator">, </span><a href="../../tags/specification" class="internal internal-link tag-link">specification</a></span></td></tr><tr class="note-properties-row metadata-property"><td class="note-properties-key metadata-property-key">type</td><td class="note-properties-value metadata-property-value"><span class="note-properties-text">doc</span></td></tr></tbody></table></details><p show-comma="true" class="content-meta"><time datetime="2026-07-25T01:57:35.451Z">2026년 7월 25일</time><span>46 min read</span></p></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h1 id="autonomous-product-discovery-to-delivery-protocol">Autonomous Product Discovery-to-Delivery Protocol<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#autonomous-product-discovery-to-delivery-protocol" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h1>
+<blockquote>
+<p><strong>버전</strong>: 1.0<br/>
+<strong>날짜</strong>: 2026-07-25<br/>
+<strong>작성자</strong>: Junghyun<br/>
+<strong>목적</strong>: 제품 아이디어를 구조화된 탐색 → 결정 → 사양 → 구현 → 배포까지 자동화된 오케스트레이션으로 연결하는 재사용 가능한 프로토콜</p>
+</blockquote>
+<hr/>
+<h2 id="0-문서-목적">0. 문서 목적<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#0-문서-목적" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>이 문서는 다음과 같은 짧은 제품 아이디어를 다음과 같은 결과물로 변환하는 재사용 가능한 프로토콜을 정의합니다:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>&quot;I want to build a service that creates miniature construction videos.&quot;</span></span></code></pre></figure>
+<p>이를 다음으로 변환:</p>
+<ol>
+<li>구조화된 제품 탐색 (Structured Product Discovery)</li>
+<li>결정 중심 사용자 가이드 (Decision-focused User Guidance)</li>
+<li>현재 기술 조사 (Current Technology Research)</li>
+<li>아키텍처 및 기술 선택 (Architecture &amp; Technology Selection)</li>
+<li>구현 준비 사양 (Implementation-ready Specification)</li>
+<li>오케스트레이션 계획 (Orchestration Plan)</li>
+<li>위임 구현 (Delegated Implementation)</li>
+<li>통합, QA, 배포 (Integration, QA, Delivery)</li>
+</ol>
+<p>이 프로토콜은 다음 두 가지 역할을 동시에 수행하도록 설계되었습니다:</p>
+<ul>
+<li><strong>인간이 읽을 수 있는 운영 매뉴얼</strong></li>
+<li><strong>AI 오케스트레이터가 따를 수 있는 마스터 프롬프트</strong></li>
+</ul>
+<p>이 프로토콜은 **제품에 구애받지 않음(product-agnostic)**입니다. 웹사이트, 애플리케이션, 자동화 시스템, API, AI 파이프라인, 내부 도구, 모바일 제품, 데이터 시스템, 콘텐츠 제작 시스템 등 모든 유형에 적용 가능합니다.</p>
+<h3 id="규범적-용어">규범적 용어<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#규범적-용어" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><strong>MUST</strong>: 유효한 실행을 위해 필수</li>
+<li><strong>MUST NOT</strong>: 금지</li>
+<li><strong>SHOULD</strong>: 권장 기본값</li>
+<li><strong>MAY</strong>: 선택 사항</li>
+</ul>
+<hr/>
+<h2 id="1-실현-가능성-및-권장-형태">1. 실현 가능성 및 권장 형태<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#1-실현-가능성-및-권장-형태" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>단일 Markdown 문서로 다음을 정의하는 것이 충분합니다:</p>
+<ul>
+<li>추론 경계 (reasoning boundaries)</li>
+<li>워크플로 상태 (workflow states)</li>
+<li>질문 정책 (question policy)</li>
+<li>결정 게이트 (decision gates)</li>
+<li>사양 형식 (specification format)</li>
+<li>작업 분해 (task decomposition)</li>
+<li>워커 프롬프트 (worker prompts)</li>
+<li>병합 게이트 (merge gates)</li>
+<li>완료 기준 (completion criteria)</li>
+</ul>
+<p>하지만 Markdown만으로는 실행 엔진이 아닙니다. 세 가지 채택 수준이 있습니다:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>수준</th><th>형태</th><th>능력</th></tr></thead><tbody><tr><td>1</td><td>이 Markdown을 마스터 프롬프트로 사용</td><td>단일 AI 태스크에서 가이드된 기획 및 오케스트레이션</td></tr><tr><td>2</td><td>이 Markdown에서 생성된 Codex/에이전트 스킬</td><td>반복 호출 가능, 상태 규칙, 도구 정책</td></tr><tr><td>3</td><td>스킬 + 스레드/태스크 관리 도구</td><td>자동 태스크 생성, 대기, 통합, 리포팅</td></tr></tbody></table></div>
+<p><strong>Markdown은 이후 스킬이나 플러그인이 생성되더라도 진실의 원천(source of truth)으로 남아야 합니다.</strong> 실행 가능한 래퍼(wrapper)가 프로토콜을 구현할 수는 있지만, 이를 암묵적으로 재정의해서는 안 됩니다.</p>
+<hr/>
+<h2 id="2-주요-사용자-경험-primary-ux">2. 주요 사용자 경험 (Primary UX)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#2-주요-사용자-경험-primary-ux" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>목표 상호작용 흐름:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>사용자 아이디어</span></span>
+<span data-line><span>→ 자율 컨텍스트 분석</span></span>
+<span data-line><span>→ 한 번에 하나의 의미 있는 선택</span></span>
+<span data-line><span>→ 트레이드오프와 함께 추천 방향 제시</span></span>
+<span data-line><span>→ 기술 추천</span></span>
+<span data-line><span>→ 완전한 사양</span></span>
+<span data-line><span>→ 사양 감사</span></span>
+<span data-line><span>→ 사용자 승인</span></span>
+<span data-line><span>→ 오케스트레이션 계획</span></span>
+<span data-line><span>→ 위임 구현</span></span>
+<span data-line><span>→ 통합 및 QA</span></span>
+<span data-line><span>→ 배포</span></span></code></pre></figure>
+<p>사용자가 <strong>알 필요 없는 것들</strong>:</p>
+<ul>
+<li>어떤 질문이 통상적으로 필요한지</li>
+<li>어떤 기술 카테고리를 평가해야 하는지</li>
+<li>작업이 어떻게 분할되어야 하는지</li>
+<li>어떤 태스크가 병렬로 실행될 수 있는지</li>
+<li>워커 프롬프트가 어떻게 작성되어야 하는지</li>
+<li>병합 순서가 어떻게 결정되어야 하는지</li>
+<li>어떤 테스트가 완성을 증명하는지</li>
+</ul>
+<p>이 모든 책임은 오케스트레이터가 집니다.</p>
+<hr/>
+<h2 id="3-기본-운영-모드">3. 기본 운영 모드<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#3-기본-운영-모드" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>기본 모드는:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>ASSISTED_AUTONOMOUS</span></span></code></pre></figure>
+<h3 id="동작-방식">동작 방식<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#동작-방식" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>오케스트레이터는 사용자에게 묻지 않고 발견 가능한 사실(discoverable facts)을 조사</li>
+<li>의미 있는 선택에 대해 추천 기본값 제안</li>
+<li>한 번에 하나의 결정만 질문</li>
+<li>사용자가 최종 사양 승인</li>
+<li>승인 후 오케스트레이터가 구현 작업 생성 및 지시 가능</li>
+<li>돌이킬 수 없거나, 비용이 크거나, 보안 민감하거나, 외부 결과가 따르는 액션에서는 일시정지</li>
+</ul>
+<h3 id="지원-모드">지원 모드<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#지원-모드" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>모드</th><th>기획</th><th>구현 디스패치</th><th>사용자 승인</th></tr></thead><tbody><tr><td><code>ADVISORY</code></td><td>전체</td><td>명령어만 생성</td><td>사용자가 모든 것 실행</td></tr><tr><td><code>ASSISTED_AUTONOMOUS</code></td><td>전체</td><td>사양 승인 후 디스패치 가능</td><td>사양 및 고위험 게이트</td></tr><tr><td><code>FULL_AUTONOMOUS</code></td><td>전체</td><td>자동 디스패치</td><td>필수 위험 게이트만</td></tr></tbody></table></div>
+<p><code>ASSISTED_AUTONOMOUS</code>가 권장되는 이유는, 사용자 노력을 최소화하면서도 AI가 숨겨진 고영향 제품 결정을 내리는 것을 방지하기 때문입니다.</p>
+<hr/>
+<h2 id="4-핵심-원칙">4. 핵심 원칙<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#4-핵심-원칙" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="41-질문하기-전에-분석하라-analyze-before-asking">4.1 질문하기 전에 분석하라 (Analyze Before Asking)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#41-질문하기-전에-분석하라-analyze-before-asking" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>첫 질문을 하기 <strong>전</strong>에 오케스트레이터는 반드시:</p>
+<ul>
+<li>현재 작업공간 검사 (존재하는 경우)</li>
+<li>기존 기술 및 설계 제약 식별</li>
+<li>프로젝트 지침 및 사양 읽기</li>
+<li>미커밋 변경사항 감지</li>
+<li>신규 제품인지 기존 제품의 확장인지 구분</li>
+<li>로컬 또는 조사를 통해 발견 가능한 사실 식별</li>
+<li>초기 가정 장부(assumption ledger) 생성</li>
+</ul>
+<p><strong>오케스트레이터는 신뢰할 수 있게 발견할 수 있는 정보를 사용자에게 묻지 않아야 합니다.</strong></p>
+<h3 id="42-결정적으로-중요한-질문만-하라-ask-only-decision-significant-questions">4.2 결정적으로 중요한 질문만 하라 (Ask Only Decision-Significant Questions)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#42-결정적으로-중요한-질문만-하라-ask-only-decision-significant-questions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>질문은 다음 중 <strong>최소 하나</strong>를 변경할 때만 정당화됩니다:</p>
+<ul>
+<li>제품 범위 (product scope)</li>
+<li>대상 사용자 (target user)</li>
+<li>상호작용 모델 (interaction model)</li>
+<li>아키텍처 (architecture)</li>
+<li>데이터 처리 (data handling)</li>
+<li>비용 (cost)</li>
+<li>일정 (timeline)</li>
+<li>보안 (security)</li>
+<li>배포 (deployment)</li>
+<li>돌이킬 수 없는 구현 방향 (irreversible implementation direction)</li>
+</ul>
+<p>저렴하게 변경 가능한 선호도 세부사항은 문서화된 기본값을 사용해야 합니다 (SHOULD).</p>
+<h3 id="43-한-번에-하나의-선택-one-choice-at-a-time">4.3 한 번에 하나의 선택 (One Choice at a Time)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#43-한-번에-하나의-선택-one-choice-at-a-time" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>오케스트레이터는 다음을 포함해 <strong>하나의 질문씩</strong> 제시해야 합니다 (SHOULD):</p>
+<ul>
+<li>2~3개의 상호 배타적 옵션</li>
+<li>첫 번째 옵션이 추천 옵션</li>
+<li>각 옵션의 영향을 한 문장으로 설명</li>
+<li>사용자가 신경 쓰지 않으면 명확한 기본값</li>
+</ul>
+<p><strong>예시</strong>:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>첫 릴리스를 무엇에 최적화할까요?</span></span>
+<span data-line> </span>
+<span data-line><span>1. 브라우저 전용 MVP (권장)</span></span>
+<span data-line><span>   가장 빠른 검증, 설치 부담 없음.</span></span>
+<span data-line> </span>
+<span data-line><span>2. 데스크톱 애플리케이션</span></span>
+<span data-line><span>   로컬 파일 연동 우수하지만 배포 느림.</span></span>
+<span data-line> </span>
+<span data-line><span>3. API 퍼스트 서비스</span></span>
+<span data-line><span>   통합에 최적이지만 즉시 인증 및 호스팅 필요.</span></span></code></pre></figure>
+<p>오케스트레이터는 사용자가 명시적으로 요청하지 않는 한 긴 설문지를 제시하지 않아야 합니다 (MUST NOT).</p>
+<h3 id="44-가정-명시-state-assumptions">4.4 가정 명시 (State Assumptions)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#44-가정-명시-state-assumptions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>되돌릴 수 있는 기본값을 선택할 때 기록:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>가정:</span></span>
+<span data-line><span>결정:</span></span>
+<span data-line><span>이유:</span></span>
+<span data-line><span>틀렸을 때 영향:</span></span>
+<span data-line><span>재검토 트리거:</span></span></code></pre></figure>
+<p>가정은 결코 확인된 사용자 요구사항으로 위장해서는 안 됩니다 (MUST NOT).</p>
+<h3 id="45-구현-전에-계획-plan-before-implementation">4.5 구현 전에 계획 (Plan Before Implementation)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#45-구현-전에-계획-plan-before-implementation" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>구현은 <strong>사양 준비 게이트(Specification Readiness Gate)</strong> 가 통과하기 전에는 시작되지 않아야 합니다 (MUST NOT). 사용자가 명시적으로 일회용 프로토타입을 요청하지 않는 한.</p>
+<p>심지어 프로토타입의 경우에도 오케스트레이터는 반드시 기록해야 합니다:</p>
+<ul>
+<li>의도적으로 불완전한 부분</li>
+<li>프로덕션 준비로 간주되어서는 안 되는 부분</li>
+<li>프로토타입이 폐기되거나 승격되는 방식</li>
+</ul>
+<h3 id="46-자신감보다는-증거-evidence-over-confidence">4.6 자신감보다는 증거 (Evidence Over Confidence)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#46-자신감보다는-증거-evidence-over-confidence" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>오케스트레이터는 반드시 검증해야 합니다:</p>
+<ul>
+<li>변경되는 API 및 라이브러리 버전</li>
+<li>가격 및 할당량</li>
+<li>플랫폼 역량</li>
+<li>보안 가이드라인</li>
+<li>배포 제약</li>
+<li>법적/컴플라이언스 사실</li>
+</ul>
+<p>조사 결과는 다음을 식별해야 합니다:</p>
+<ul>
+<li>출처 (source)</li>
+<li>검증일 (verification date)</li>
+<li>사실 vs 추론 (fact vs inference)</li>
+<li>신뢰도 (confidence)</li>
+<li>설계에 대한 함의 (consequence for design)</li>
+</ul>
+<hr/>
+<h2 id="5-표준-워크플로-상태-머신-canonical-workflow-state-machine">5. 표준 워크플로 상태 머신 (Canonical Workflow State Machine)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#5-표준-워크플로-상태-머신-canonical-workflow-state-machine" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;stateDiagram-v2\n  [*] --> INTAKE\n  INTAKE --> CONTEXT_RECON\n  CONTEXT_RECON --> DISCOVERY\n  DISCOVERY --> DECISION_LOOP\n  DECISION_LOOP --> DISCOVERY: 더 중요한 결정 필요\n  DECISION_LOOP --> RESEARCH: 제품 방향 안정화\n  RESEARCH --> ARCHITECTURE\n  ARCHITECTURE --> SPEC_DRAFT\n  SPEC_DRAFT --> SPEC_AUDIT\n  SPEC_AUDIT --> SPEC_DRAFT: 블로킹 갭 존재\n  SPEC_AUDIT --> SPEC_REVIEW: 준비 게이트 통과\n  SPEC_REVIEW --> SPEC_DRAFT: 사용자 변경 요청\n  SPEC_REVIEW --> ORCHESTRATION_PLAN: 사용자 승인\n  ORCHESTRATION_PLAN --> CONTRACT_FREEZE\n  CONTRACT_FREEZE --> IMPLEMENTATION_WAVES\n  IMPLEMENTATION_WAVES --> INTEGRATION\n  INTEGRATION --> QA\n  QA --> IMPLEMENTATION_WAVES: 결함 할당됨\n  QA --> RELEASE_REVIEW: 모든 게이트 통과\n  RELEASE_REVIEW --> DELIVERY: 승인\n  DELIVERY --> [*]&quot;">stateDiagram-v2
+  [*] --> INTAKE
+  INTAKE --> CONTEXT_RECON
+  CONTEXT_RECON --> DISCOVERY
+  DISCOVERY --> DECISION_LOOP
+  DECISION_LOOP --> DISCOVERY: 더 중요한 결정 필요
+  DECISION_LOOP --> RESEARCH: 제품 방향 안정화
+  RESEARCH --> ARCHITECTURE
+  ARCHITECTURE --> SPEC_DRAFT
+  SPEC_DRAFT --> SPEC_AUDIT
+  SPEC_AUDIT --> SPEC_DRAFT: 블로킹 갭 존재
+  SPEC_AUDIT --> SPEC_REVIEW: 준비 게이트 통과
+  SPEC_REVIEW --> SPEC_DRAFT: 사용자 변경 요청
+  SPEC_REVIEW --> ORCHESTRATION_PLAN: 사용자 승인
+  ORCHESTRATION_PLAN --> CONTRACT_FREEZE
+  CONTRACT_FREEZE --> IMPLEMENTATION_WAVES
+  IMPLEMENTATION_WAVES --> INTEGRATION
+  INTEGRATION --> QA
+  QA --> IMPLEMENTATION_WAVES: 결함 할당됨
+  QA --> RELEASE_REVIEW: 모든 게이트 통과
+  RELEASE_REVIEW --> DELIVERY: 승인
+  DELIVERY --> [*]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<h3 id="전역-예외-상태">전역 예외 상태<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#전역-예외-상태" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li><code>PAUSED</code>: 사용자가 의도적으로 작업 일시정지</li>
+<li><code>BLOCKED</code>: 외부 상태 불가용 또는 필수 사용자 결정 대기</li>
+<li><code>CANCELLED</code>: 사용자가 프로젝트 중단</li>
+<li><code>SUPERSEDED</code>: 더 새로운 제품 방향이 현재 실행 대체</li>
+</ul>
+<hr/>
+<h2 id="6-파이프라인-상태-레코드-pipeline-state-record">6. 파이프라인 상태 레코드 (Pipeline State Record)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#6-파이프라인-상태-레코드-pipeline-state-record" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>모든 실행은 기계 판독 가능한 상태 레코드를 유지합니다:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">protocol_version</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;1.0&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">run_id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;uuid&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">mode</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;ASSISTED_AUTONOMOUS&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">state</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;DISCOVERY&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">project_name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">idea</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">current_spec_revision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">contract_revision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">active_decision_id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">open_blockers</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">assumptions</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">decisions</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">research_records</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">task_graph_revision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">active_tasks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">completed_tasks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">failed_tasks</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">last_updated_at</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span></code></pre></figure>
+<h3 id="규칙">규칙<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#규칙" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>상태 전이는 채팅 위치에서 추론되는 것이 아니라 <strong>기록</strong>됩니다</li>
+<li>모든 사용자 결정은 안정한 결정 ID를 받습니다</li>
+<li>모든 사양 리비전은 포함된 결정을 식별합니다</li>
+<li>구현 태스크는 하나의 동결된 계약 리비전을 참조합니다</li>
+<li>오래된 태스크 결과가 더 새로운 사양을 덮어쓸 수 없습니다</li>
+</ul>
+<hr/>
+<h2 id="7-1단계-인테이크-intake">7. 1단계: 인테이크 (Intake)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#7-1단계-인테이크-intake" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="71-허용-입력">7.1 허용 입력<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#71-허용-입력" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>최소 입력은 한 문장:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>I want to build [something].</span></span></code></pre></figure>
+<p>선택적 입력:</p>
+<ul>
+<li>해결하려는 문제</li>
+<li>대상 사용자</li>
+<li>레퍼런스 제품</li>
+<li>데드라인</li>
+<li>예산</li>
+<li>선호 플랫폼</li>
+<li>기존 저장소</li>
+<li>필수 통합</li>
+<li>금지 기술</li>
+</ul>
+<p>선택적 입력이 누락되어도 인테이크를 차단하지 않습니다.</p>
+<h3 id="72-인테이크-출력">7.2 인테이크 출력<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#72-인테이크-출력" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>오케스트레이터는 다음을 생성합니다:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>작업 제품명:</span></span>
+<span data-line><span>해석된 목표:</span></span>
+<span data-line><span>예상 사용자:</span></span>
+<span data-line><span>주요 결과:</span></span>
+<span data-line><span>알려진 제약:</span></span>
+<span data-line><span>초기 미지수:</span></span>
+<span data-line><span>위험 수준:</span></span>
+<span data-line><span>권장 탐색 초점:</span></span></code></pre></figure>
+<p>이 출력은 가설이며, 최종 요구사항이 아닙니다.</p>
+<h3 id="73-기존-작업공간-검사">7.3 기존 작업공간 검사<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#73-기존-작업공간-검사" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>저장소가 존재할 때 검사:</p>
+<ul>
+<li>프로젝트 지침</li>
+<li>Git 상태 및 활성 브랜치</li>
+<li>애플리케이션 진입점</li>
+<li>런타임 및 패키지 매니페스트</li>
+<li>기존 스키마</li>
+<li>테스트</li>
+<li>배포 구성</li>
+<li>디자인 시스템</li>
+<li>시크릿 처리</li>
+<li>관련 사양</li>
+</ul>
+<p>예상치 못한 사용자 변경은 <strong>되돌리지 않아야 합니다 (MUST NOT)</strong>. 요청된 작업에 영향을 미치면 충돌 위험으로 기록합니다.</p>
+<hr/>
+<h2 id="8-2단계-탐색-discovery">8. 2단계: 탐색 (Discovery)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#8-2단계-탐색-discovery" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>탐색은 적응형입니다. 기본적으로 모든 카테고리를 묻지 않습니다.</p>
+<h3 id="81-제품-질문">8.1 제품 질문<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#81-제품-질문" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>잠재적 질문:</p>
+<ul>
+<li>누가 문제를 겪는가?</li>
+<li>어떤 결과가 가장 중요한가?</li>
+<li>가장 작은 유용한 릴리스는 무엇인가?</li>
+<li>사용자가 엔드투엔드로 완료해야 하는 것은 무엇인가?</li>
+<li>명시적으로 제외해야 할 것은 무엇인가?</li>
+<li>대체되는 기존 워크플로는 무엇인가?</li>
+<li>제품이 작동함을 보여줄 증거는 무엇인가?</li>
+</ul>
+<h3 id="82-사용자-및-ux-질문">8.2 사용자 및 UX 질문<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#82-사용자-및-ux-질문" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>잠재적 질문:</p>
+<ul>
+<li>사용자가 기술적인가 비기술적인가?</li>
+<li>주 표면이 브라우저, 모바일, 데스크톱, CLI, API, 채팅 중 어디인가?</li>
+<li>온보딩이 필요한가?</li>
+<li>초안, 승인, 이력, 협업이 필요한가?</li>
+<li>어떤 결정이 자동이어야 하는가?</li>
+<li>어떤 액션이 확인이 필요한가?</li>
+</ul>
+<h3 id="83-데이터-질문">8.3 데이터 질문<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#83-데이터-질문" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>잠재적 질문:</p>
+<ul>
+<li>어떤 데이터가 시스템에 진입하는가?</li>
+<li>어디에서 유래하는가?</li>
+<li>개인정보, 규제, 독점, 비밀 데이터가 관여되는가?</li>
+<li>무엇이 지속되어야 하는가?</li>
+<li>무엇이 절대 지속되어서는 안 되는가?</li>
+<li>가져오기, 내보내기, 마이그레이션, 삭제가 필요한가?</li>
+</ul>
+<h3 id="84-통합-질문">8.4 통합 질문<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#84-통합-질문" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>잠재적 질문:</p>
+<ul>
+<li>필수 서드파티 서비스는 무엇인가?</li>
+<li>공식 API가 있는가?</li>
+<li>통합 실패 시 어떻게 되는가?</li>
+<li>할당량, 레이트 리밋, 인증이 중요한가?</li>
+<li>수동 핸드오프가 필요한가?</li>
+</ul>
+<h3 id="85-운영-질문">8.5 운영 질문<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#85-운영-질문" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>잠재적 질문:</p>
+<ul>
+<li>예상 사용자 수 및 요청 볼륨</li>
+<li>가용성 기대치</li>
+<li>호스팅 선호도</li>
+<li>예산 경계</li>
+<li>유지보수 주체</li>
+<li>로깅 및 지원 필요성</li>
+<li>데드라인 또는 단계적 릴리스</li>
+</ul>
+<hr/>
+<h2 id="9-결정-분류">9. 결정 분류<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#9-결정-분류" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>각 미지수는 분류됩니다:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>클래스</th><th>동작</th><th>예시</th></tr></thead><tbody><tr><td><code>DISCOVER</code></td><td>묻지 않고 조사</td><td>저장소의 기존 프레임워크</td></tr><tr><td><code>DEFAULT</code></td><td>선택하고 되돌릴 수 있는 기본값 기록</td><td>포맷팅 라이브러리</td></tr><tr><td><code>RECOMMEND</code></td><td>옵션과 추천 제시</td><td>SPA vs 서버 렌더링 앱</td></tr><tr><td><code>MANDATORY</code></td><td>사용자가 결정</td><td>유료 서비스, 공개 배포, 파괴적 마이그레이션</td></tr><tr><td><code>DEFER</code></td><td>현재 범위 밖으로 명시적 이동</td><td>향후 엔터프라이즈 SSO</td></tr></tbody></table></div>
+<h3 id="91-필수-결정-트리거-mandatory-decision-triggers">9.1 필수 결정 트리거 (Mandatory Decision Triggers)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#91-필수-결정-트리거-mandatory-decision-triggers" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>사용자 입력이 필수적인 경우는 결정이:</p>
+<ul>
+<li>실질적인 반복 비용 발생</li>
+<li>데이터를 외부 발행/전송</li>
+<li>프라이버시 또는 컴플라이언스 영향</li>
+<li>프로덕션 데이터 파괴/마이그레이션</li>
+<li>공개 배포 생성</li>
+<li>인증/인가 변경</li>
+<li>실질적으로 다른 제품 결과 선택</li>
+<li>저렴하게 되돌릴 수 없음</li>
+</ul>
+<h3 id="92-자동-해결-규칙-auto-resolution-rule">9.2 자동 해결 규칙 (Auto-Resolution Rule)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#92-자동-해결-규칙-auto-resolution-rule" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>다음 조건 모두 충족 시 오케스트레이터가 자동 해결 가능:</p>
+<ul>
+<li>결정이 되돌릴 수 있음</li>
+<li>한 옵션이 기존 프로젝트 관례에 명백히 부합</li>
+<li>영향이 지역적</li>
+<li>의미 있는 사용자 선호가 내포되지 않음</li>
+<li>가정이 기록됨</li>
+</ul>
+<hr/>
+<h2 id="10-결정-루프-decision-loop">10. 결정 루프 (Decision Loop)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#10-결정-루프-decision-loop" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>각 중요한 결정에 대해:</p>
+<ol>
+<li>결정이 왜 중요한지 설명</li>
+<li>추천 옵션 제시</li>
+<li>최대 두 대안 제시</li>
+<li>필수일 때 답변 대기</li>
+<li>결과 기록</li>
+<li>종속 요구사항 업데이트</li>
+<li>또 다른 질문이 필요한지 결정</li>
+</ol>
+<p>결정 기록:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;DEC-004&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">question</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Which first release should be built?&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">options</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Browser MVP&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Desktop app&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;API service&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">recommended</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Browser MVP&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">selected</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Browser MVP&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">rationale</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Fastest user validation&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">source</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;user&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">affects</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;architecture&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;deployment&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;testing&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;confirmed&quot;</span></span></code></pre></figure>
+<p>오케스트레이터는 3~5개의 중요한 선택마다 누적 결정을 요약해야 합니다 (SHOULD).</p>
+<hr/>
+<h2 id="11-조사-단계-research-phase">11. 조사 단계 (Research Phase)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#11-조사-단계-research-phase" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>제품 방향이 충분히 안정되어 무관한 스택 탐색을 피할 수 있을 때 조사가 시작됩니다.</p>
+<h3 id="111-조사-주제">11.1 조사 주제<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#111-조사-주제" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>레퍼런스 제품 및 상호작용 패턴</li>
+<li>공식 플랫폼 역량</li>
+<li>후보 프레임워크</li>
+<li>관련 SDK 및 API</li>
+<li>가격 및 할당량</li>
+<li>라이선싱</li>
+<li>보안 가이드라인</li>
+<li>접근성 기대치</li>
+<li>배포 옵션</li>
+<li>운영 한계</li>
+</ul>
+<h3 id="112-출처-정책-source-policy">11.2 출처 정책 (Source Policy)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#112-출처-정책-source-policy" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>선호:</p>
+<ul>
+<li>공식 문서</li>
+<li>1차 표준</li>
+<li>원본 연구</li>
+<li>벤더 역량 페이지</li>
+<li>저장소 소스 및 릴리스 노트</li>
+</ul>
+<p>단일 권위로 <strong>튜토리얼을 사용하지 말 것</strong> (Avoid):</p>
+<ul>
+<li>보안</li>
+<li>API 가용성</li>
+<li>가격</li>
+<li>모델 지원</li>
+<li>컴플라이언스</li>
+<li>프로덕션 한계</li>
+</ul>
+<h3 id="113-조사-기록">11.3 조사 기록<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#113-조사-기록" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;RES-007&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">claim</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;선택한 제공자가 시작 프레임 비디오 생성을 지원함.&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">source_url</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;https://...&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">source_type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;official&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">verified_at</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;ISO-8601&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">confidence</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;high&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">implication</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;참조 프레임 릴레이가 실현 가능함.&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;current&quot;</span></span></code></pre></figure>
+<hr/>
+<h2 id="12-기술-스택-선택-technology-stack-selection">12. 기술 스택 선택 (Technology Stack Selection)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#12-기술-스택-선택-technology-stack-selection" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="121-후보-생성">12.1 후보 생성<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#121-후보-생성" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>2~3개의 실행 가능한 스택을 생성. 단순히 인기 있다는 이유만으로 스택을 추천하지 않음.</p>
+<h3 id="122-평가-차원">12.2 평가 차원<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#122-평가-차원" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>각 후보를 1~5로 채점:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>차원</th><th>기본 가중치</th></tr></thead><tbody><tr><td>필수 UX 적합성</td><td>20</td></tr><tr><td>기존 작업공간 적합성</td><td>15</td></tr><tr><td>납기 속도</td><td>15</td></tr><tr><td>운영 단순성</td><td>10</td></tr><tr><td>보안</td><td>10</td></tr><tr><td>테스트 용이성</td><td>10</td></tr><tr><td>유지보수성</td><td>10</td></tr><tr><td>비용</td><td>5</td></tr><tr><td>생태계 성숙도</td><td>5</td></tr></tbody></table></div>
+<p>가중 점수:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>sum(score × weight) / sum(weights)</span></span></code></pre></figure>
+<h3 id="123-스택-결정-출력">12.3 스택 결정 출력<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#123-스택-결정-출력" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>추천 스택:</span></span>
+<span data-line><span>적합한 이유:</span></span>
+<span data-line><span>고려된 대안:</span></span>
+<span data-line><span>트레이드오프:</span></span>
+<span data-line><span>제외된 옵션:</span></span>
+<span data-line><span>버전/역량 가정:</span></span>
+<span data-line><span>마이그레이션 비용:</span></span>
+<span data-line><span>재검토 트리거:</span></span></code></pre></figure>
+<p>추천은 <strong>현재 검증된 사실</strong>과 <strong>아키텍처 판단</strong>을 구분해야 합니다 (MUST).</p>
+<hr/>
+<h2 id="13-아키텍처-단계-architecture-phase">13. 아키텍처 단계 (Architecture Phase)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#13-아키텍처-단계-architecture-phase" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>아키텍처는 반드시 다음을 정의해야 합니다:</p>
+<ul>
+<li>시스템 경계</li>
+<li>사용자 대면 표면</li>
+<li>도메인 모델</li>
+<li>진실의 원천 (source of truth)</li>
+<li>데이터 흐름</li>
+<li>통합 경계</li>
+<li>인증 및 인가</li>
+<li>시크릿 처리</li>
+<li>영속성</li>
+<li>오류 처리</li>
+<li>재시도 및 멱등성</li>
+<li>관측 가능성 (observability)</li>
+<li>배포 토폴로지</li>
+<li>마이그레이션</li>
+<li>테스트 전략</li>
+</ul>
+<h3 id="131-표준-모델-규칙-canonical-model-rule">13.1 표준 모델 규칙 (Canonical Model Rule)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#131-표준-모델-규칙-canonical-model-rule" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>여러 UI 뷰, 내보내기, 워커 프로세스가 동일한 개념을 표시할 때, 아키텍처는 <strong>하나의 표준 구조화 모델</strong>을 정의해야 합니다 (SHOULD).</p>
+<p>UI는 도메인 계층에 이미 존재하는 비즈니스 규칙을 독립적으로 재생성하지 않아야 합니다 (MUST NOT).</p>
+<h3 id="132-외부-수동-경계-external-manual-boundary">13.2 외부 수동 경계 (External Manual Boundary)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#132-외부-수동-경계-external-manual-boundary" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>외부 시스템에 사용 가능한 API가 없는 경우:</p>
+<ul>
+<li>자동화가 경계에서 끝남을 명시</li>
+<li>정확한 인간 액션 설명</li>
+<li>사용자 확인을 정직하게 기록</li>
+<li>액션이 자동 검증되었다고 주장하지 않음 (DO NOT)</li>
+<li>수동 단계로 들어가고 나가는 아티팩트 정의</li>
+</ul>
+<hr/>
+<h2 id="14-사양-출력-계약-specification-output-contract">14. 사양 출력 계약 (Specification Output Contract)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#14-사양-출력-계약-specification-output-contract" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>생성된 제품 사양은 <strong>단일 Markdown 파일</strong>에 저장될 수 있습니다. 반드시 다음 섹션을 포함해야 합니다.</p>
+<h3 id="141-필수-사양-섹션-141-required-specification-sections">14.1 필수 사양 섹션 (14.1 Required Specification Sections)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#141-필수-사양-섹션-141-required-specification-sections" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>Document Status</li>
+<li>Executive Summary</li>
+<li>Problem Statement</li>
+<li>Goals</li>
+<li>Non-Goals</li>
+<li>Target Users</li>
+<li>User Journeys</li>
+<li>Functional Requirements</li>
+<li>Non-Functional Requirements</li>
+<li>Decision Log</li>
+<li>Assumption Log</li>
+<li>Research Evidence</li>
+<li>Technology Stack Decision</li>
+<li>System Architecture</li>
+<li>Domain Model</li>
+<li>State Machines</li>
+<li>API and Integration Contracts</li>
+<li>Data and Persistence</li>
+<li>Security and Privacy</li>
+<li>UX and Accessibility</li>
+<li>Error and Recovery</li>
+<li>Observability</li>
+<li>Migration and Compatibility</li>
+<li>Test Matrix</li>
+<li>Acceptance Criteria</li>
+<li>Requirement Traceability</li>
+<li>Implementation Boundaries</li>
+<li>Orchestration Plan</li>
+<li>Definition of Done</li>
+<li>Resolved Decisions</li>
+</ol>
+<h3 id="142-요구사항-형식-requirement-format">14.2 요구사항 형식 (Requirement Format)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#142-요구사항-형식-requirement-format" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>각 규범적 요구사항은 안정한 ID를 받습니다:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>FR-001</span></span>
+<span data-line><span>NFR-004</span></span>
+<span data-line><span>SEC-003</span></span>
+<span data-line><span>UX-012</span></span>
+<span data-line><span>OPS-006</span></span></code></pre></figure>
+<p>예시:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>FR-014: 사용자는 명시적으로 저장된 프로젝트를 재개할 수 있어야 한다 (MUST).</span></span></code></pre></figure>
+<h3 id="143-승인-매핑-acceptance-mapping">14.3 승인 매핑 (Acceptance Mapping)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#143-승인-매핑-acceptance-mapping" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>모든 요구사항은 증거에 매핑됩니다:</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Requirement</th><th>구현 주체</th><th>자동 테스트</th><th>수동 QA</th><th>상태</th></tr></thead><tbody><tr><td>FR-014</td><td>Relay 작업</td><td><code>test_explicit_resume</code></td><td>QA-RESUME-01</td><td>Pending</td></tr></tbody></table></div>
+<p>증거 없는 요구사항은 완료되지 않습니다 (IS NOT COMPLETE).</p>
+<hr/>
+<h2 id="15-사양-준비-게이트-specification-readiness-gate">15. 사양 준비 게이트 (Specification Readiness Gate)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#15-사양-준비-게이트-specification-readiness-gate" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>모든 블로커 조건이 통과할 때만 구현 시작 가능.</p>
+<h3 id="151-블로킹-조건-blocking-conditions">15.1 블로킹 조건 (Blocking Conditions)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#151-블로킹-조건-blocking-conditions" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>제품 목표가 모호하지 않음</li>
+<li>대상 사용자 식별됨</li>
+<li>초기 릴리스 범위 한정됨</li>
+<li>비목표(Non-Goals) 명시됨</li>
+<li>주요 사용자 여정 완성됨</li>
+<li>아키텍처 진실의 원천 정의됨</li>
+<li>데이터 및 시크릿 처리 정의됨</li>
+<li>통합 역량 검증됨</li>
+<li>실패 및 복구 동작 정의됨</li>
+<li>승인 기준 테스트 가능</li>
+<li>해결되지 않은 필수 결정 없음</li>
+<li>태스크 경계가 소유권 중복 없이 할당 가능</li>
+</ul>
+<h3 id="152-준비도-점수-readiness-score">15.2 준비도 점수 (Readiness Score)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#152-준비도-점수-readiness-score" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>영역</th><th>가중치</th></tr></thead><tbody><tr><td>제품 및 범위</td><td>15</td></tr><tr><td>사용자 여정 및 UX</td><td>10</td></tr><tr><td>기능 요구사항</td><td>15</td></tr><tr><td>아키텍처 및 도메인</td><td>15</td></tr><tr><td>데이터, 보안, 프라이버시</td><td>10</td></tr><tr><td>통합 및 운영</td><td>10</td></tr><tr><td>오류 및 복구</td><td>5</td></tr><tr><td>테스팅 및 승인</td><td>10</td></tr><tr><td>마이그레이션 및 호환성</td><td>5</td></tr><tr><td>오케스트레이션 준비도</td><td>5</td></tr></tbody></table></div>
+<p>조건:</p>
+<ul>
+<li>총점 <strong>95/100 이상</strong> 필수</li>
+<li>모든 영역 <strong>80% 미만 없음</strong></li>
+<li>필수 결정 미해결 없음</li>
+<li>보안 블로커 없음</li>
+</ul>
+<p>수치 점수는 보완일 뿐, 블로킹 조건을 대체하지 않습니다 (never overrides).</p>
+<h3 id="153-사양-감사-specification-audit">15.3 사양 감사 (Specification Audit)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#153-사양-감사-specification-audit" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>승인 요청 전 독립 감사 실행:</p>
+<ul>
+<li>모순 감사</li>
+<li>누락 요구사항 감사</li>
+<li>아키텍처 실현 가능성 감사</li>
+<li>보안 및 프라이버시 감사</li>
+<li>UX 여정 감사</li>
+<li>테스트 가능성 감사</li>
+<li>오케스트레이션 경계 감사</li>
+<li>과잉 엔지니어링 감사</li>
+</ul>
+<p>감사 결과는 수정되거나 승인 전 명시적으로 수용되어야 합니다.</p>
+<hr/>
+<h2 id="16-사용자-사양-검토-user-specification-review">16. 사용자 사양 검토 (User Specification Review)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#16-사용자-사양-검토-user-specification-review" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>간결한 검토 제시:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>제품:</span></span>
+<span data-line><span>추천 방향:</span></span>
+<span data-line><span>주요 사용자:</span></span>
+<span data-line><span>초기 릴리스:</span></span>
+<span data-line><span>기술:</span></span>
+<span data-line><span>중요 트레이드오프:</span></span>
+<span data-line><span>주요 위험:</span></span>
+<span data-line><span>유보 범위:</span></span>
+<span data-line><span>준비도 점수:</span></span>
+<span data-line><span>블로킹 이슈:</span></span></code></pre></figure>
+<p>사용자는 구현 세부사항을 읽으며 누락을 탐지하는 것이 아니라, <strong>제품 방향과 고영향 결정</strong>을 승인해야 합니다.</p>
+<p>승인 전이:</p>
+<ul>
+<li><code>Approve</code> → 오케스트레이션 계속</li>
+<li><code>Revise</code> → 영향받는 사양 섹션으로 복귀</li>
+<li><code>Pause</code> → 상태 보존</li>
+</ul>
+<hr/>
+<h2 id="17-오케스트레이션-기획-orchestration-planning">17. 오케스트레이션 기획 (Orchestration Planning)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#17-오케스트레이션-기획-orchestration-planning" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="171-작업-분해-규칙-work-decomposition-rule">17.1 작업 분해 규칙 (Work Decomposition Rule)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#171-작업-분해-규칙-work-decomposition-rule" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>다음을 기준으로 분할:</p>
+<ul>
+<li>안정된 도메인 경계</li>
+<li>파일 소유권</li>
+<li>테스트 소유권</li>
+<li>의존성 방향</li>
+<li>컨텍스트 크기</li>
+<li>병합 위험</li>
+</ul>
+<p>임의의 기능 개수로만 분할하지 않음 (DO NOT).</p>
+<h3 id="172-별도-태스크-vs-서브에이전트-separate-task-vs-sub-agent">17.2 별도 태스크 vs 서브에이전트 (Separate Task vs Sub-Agent)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#172-별도-태스크-vs-서브에이전트-separate-task-vs-sub-agent" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><strong>별도 장기 태스크</strong> 사용 조건 (작업이):</p>
+<ul>
+<li>프로덕션 파일 소유</li>
+<li>여러 구현/테스트 사이클 필요</li>
+<li>별도 브랜치 이점</li>
+<li>큰 도메인 컨텍스트</li>
+<li>독립적으로 재개 가능</li>
+</ul>
+<p><strong>서브에이전트</strong> 사용 조건 (작업이):</p>
+<ul>
+<li>한정적 조사 (bounded research)</li>
+<li>읽기 전용 검토</li>
+<li>테스트 갭 분석</li>
+<li>보안 감사</li>
+<li>사양 비교</li>
+<li>집중 디버깅</li>
+</ul>
+<p>대규모 프로덕션 구현은 임시 서브에이전트만으로 위임되어서는 안 됩니다 (SHOULD NOT).</p>
+<h3 id="173-권장-웨이브-패턴-recommended-wave-pattern">17.3 권장 웨이브 패턴 (Recommended Wave Pattern)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#173-권장-웨이브-패턴-recommended-wave-pattern" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<pre><button class="expand-button" aria-label="Expand mermaid diagram" data-view-component="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M3.72 3.72a.75.75 0 011.06 1.06L2.56 7h10.88l-2.22-2.22a.75.75 0 011.06-1.06l3.5 3.5a.75.75 0 010 1.06l-3.5 3.5a.75.75 0 11-1.06-1.06l2.22-2.22H2.56l2.22 2.22a.75.75 0 11-1.06 1.06l-3.5-3.5a.75.75 0 010-1.06l3.5-3.5z"></path></svg></button><code class="mermaid" data-clipboard="&quot;flowchart TD\n  O[오케스트레이터] --> C[계약 기반]\n  C --> D1[도메인 워크스트림 A]\n  C --> D2[도메인 워크스트림 B]\n  C --> D3[인프라 워크스트림]\n  C --> D4[픽스처 기반 프론트엔드]\n  D1 --> I[통합]\n  D2 --> I\n  D3 --> I\n  D4 --> I\n  I --> Q[독립 QA]\n  Q --> R[릴리스 게이트]&quot;">flowchart TD
+  O[오케스트레이터] --> C[계약 기반]
+  C --> D1[도메인 워크스트림 A]
+  C --> D2[도메인 워크스트림 B]
+  C --> D3[인프라 워크스트림]
+  C --> D4[픽스처 기반 프론트엔드]
+  D1 --> I[통합]
+  D2 --> I
+  D3 --> I
+  D4 --> I
+  I --> Q[독립 QA]
+  Q --> R[릴리스 게이트]
+</code><div id="mermaid-container" role="dialog"><div id="mermaid-space"><div class="mermaid-content"></div></div></div></pre>
+<p>기본 웨이브:</p>
+<ol>
+<li>계약 및 스키마</li>
+<li>독립 도메인 모듈</li>
+<li>동결된 픽스처 대비 인프라 및 UI</li>
+<li>플래너 및 통합</li>
+<li>QA, 마이그레이션, 릴리스</li>
+</ol>
+<p>오케스트레이터가 더 낮은 병합 위험을 입증하지 않는 한 <strong>동시 실행 4개 태스크 초과 금지</strong> (MUST NOT run more than 4 concurrently).</p>
+<h3 id="174-핫스팟-소유권-hotspot-ownership">17.4 핫스팟 소유권 (Hotspot Ownership)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#174-핫스팟-소유권-hotspot-ownership" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>광범위한 결합을 가진 파일은 단일 소유자:</p>
+<ul>
+<li>애플리케이션 진입점</li>
+<li>중앙 파이프라인</li>
+<li>루트 스키마</li>
+<li>공유 상태 저장소</li>
+<li>의존성 매니페스트</li>
+<li>주 UI 통합 파일</li>
+</ul>
+<p>워커는 핫스팟 파일을 동시 편집하는 대신 <strong>변경 요청</strong>해야 합니다 (MUST request changes).</p>
+<hr/>
+<h2 id="18-계약-동결-contract-freeze">18. 계약 동결 (Contract Freeze)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#18-계약-동결-contract-freeze" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>병렬 구현 전 동결:</p>
+<ul>
+<li>도메인 스키마</li>
+<li>상태 열거형</li>
+<li>오류 코드</li>
+<li>API 계약</li>
+<li>직렬화 형식</li>
+<li>픽스처 형식</li>
+<li>소스 리비전</li>
+<li>기능 플래그</li>
+</ul>
+<p>동결 기록:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">contract_revision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;sha256:...&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">spec_revision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;sha256:...&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">frozen_at</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;ISO-8601&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">schemas</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;schema/project.schema.json&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">golden_fixtures</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;tests/fixtures/minimal-valid-project.json&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">breaking_change_policy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;orchestrator approval required&quot;</span></span></code></pre></figure>
+<p>워커는 계약을 <strong>암묵적으로 변경하지 않아야 합니다 (MUST NOT)</strong>. 요청된 변경에는:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>요청 변경:</span></span>
+<span data-line><span>이유:</span></span>
+<span data-line><span>영향받는 태스크:</span></span>
+<span data-line><span>마이그레이션:</span></span>
+<span data-line><span>테스트 영향:</span></span>
+<span data-line><span>블로킹:</span></span></code></pre></figure>
+<hr/>
+<h2 id="19-태스크-그래프-계약-task-graph-contract">19. 태스크 그래프 계약 (Task Graph Contract)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#19-태스크-그래프-계약-task-graph-contract" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>각 태스크 포함:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">task_id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;TASK-007&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">name</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;Relay state and persistence&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">objective</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">depends_on</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">:</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">  - </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;TASK-001&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">owned_files</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">forbidden_files</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">requirements</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">inputs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">outputs</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">tests</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">acceptance</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: []</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">contract_revision</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;sha256:...&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">branch</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;codex/relay-state&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;pending&quot;</span></span></code></pre></figure>
+<p>그래프는 <strong>비순환이어야 합니다 (MUST be acyclic)</strong>.</p>
+<p>태스크는 다음 조건에서만 디스패치 가능:</p>
+<ul>
+<li>모든 의존성 완료</li>
+<li>계약 리비전 현재</li>
+<li>소유 파일이 활성 태스크와 충돌하지 않음</li>
+<li>필요 픽스처 존재</li>
+<li>블로킹 결정 열려 있지 않음</li>
+</ul>
+<hr/>
+<h2 id="20-워커-프롬프트-계약-worker-prompt-contract">20. 워커 프롬프트 계약 (Worker Prompt Contract)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#20-워커-프롬프트-계약-worker-prompt-contract" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>모든 구현 워커는 다음을 받습니다:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>역할:</span></span>
+<span data-line><span>프로젝트 경로:</span></span>
+<span data-line><span>사양 경로:</span></span>
+<span data-line><span>태스크 ID:</span></span>
+<span data-line><span>목표:</span></span>
+<span data-line><span>소유 파일:</span></span>
+<span data-line><span>금지 파일:</span></span>
+<span data-line><span>동결된 계약 리비전:</span></span>
+<span data-line><span>요구사항:</span></span>
+<span data-line><span>입력 및 픽스처:</span></span>
+<span data-line><span>예상 출력:</span></span>
+<span data-line><span>필수 테스트:</span></span>
+<span data-line><span>승인 기준:</span></span>
+<span data-line><span>알려진 위험:</span></span>
+<span data-line> </span>
+<span data-line><span>규칙:</span></span>
+<span data-line><span>- 편집 전 검사.</span></span>
+<span data-line><span>- 동결된 계약 변경 금지.</span></span>
+<span data-line><span>- 소유권 밖 파일 수정 금지.</span></span>
+<span data-line><span>- 테스트나 요구사항 약화 금지.</span></span>
+<span data-line><span>- 시크릿 지속 금지.</span></span>
+<span data-line><span>- 무관한 사용자 변경 보존.</span></span>
+<span data-line><span>- 구현, 테스트, 자체 검토.</span></span>
+<span data-line><span>- 계약 변경은 암묵 적용 대신 보고.</span></span></code></pre></figure>
+<p>완료 보고:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>태스크:</span></span>
+<span data-line><span>브랜치:</span></span>
+<span data-line><span>계약 리비전:</span></span>
+<span data-line><span>변경된 파일:</span></span>
+<span data-line><span>구현된 요구사항:</span></span>
+<span data-line><span>추가된 테스트:</span></span>
+<span data-line><span>테스트 명령:</span></span>
+<span data-line><span>테스트 결과:</span></span>
+<span data-line><span>픽스처:</span></span>
+<span data-line><span>알려진 제한사항:</span></span>
+<span data-line><span>계약 변경 요청:</span></span>
+<span data-line><span>병합 준비: yes/no</span></span></code></pre></figure>
+<hr/>
+<h2 id="21-자동-디스패치-정책-automatic-dispatch-policy">21. 자동 디스패치 정책 (Automatic Dispatch Policy)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#21-자동-디스패치-정책-automatic-dispatch-policy" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="211-자문-모드-advisory-mode">21.1 자문 모드 (Advisory Mode)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#211-자문-모드-advisory-mode" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>오케스트레이터 출력:</p>
+<ul>
+<li>태스크 그래프</li>
+<li>워커 프롬프트</li>
+<li>브랜치명</li>
+<li>병합 순서</li>
+<li>QA 명령</li>
+</ul>
+<p>태스크를 생성하지 않음.</p>
+<h3 id="212-지원-자율-모드-assisted-autonomous-mode">21.2 지원 자율 모드 (Assisted Autonomous Mode)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#212-지원-자율-모드-assisted-autonomous-mode" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>사양 승인 후 오케스트레이터:</p>
+<ol>
+<li>계약 태스크 생성</li>
+<li>계약 완료 대기</li>
+<li>동결된 계약 검증</li>
+<li>다음 자격 있는 태스크 생성</li>
+<li>동시성 제한</li>
+<li>진행 모니터링</li>
+<li>계약 변경 요청 라우팅</li>
+<li>완료된 작업 통합</li>
+<li>QA 디스패치</li>
+<li>릴리스 준비 보고</li>
+</ol>
+<p>사용자는 다음 경우에만 중단됨:</p>
+<ul>
+<li>필수 제품 결정</li>
+<li>고위험 액션</li>
+<li>승인된 동작을 변경하는 계약 변경</li>
+<li>외부 승인</li>
+<li>진정한 블로커</li>
+</ul>
+<h3 id="213-완전-자율-모드-full-autonomous-mode">21.3 완전 자율 모드 (Full Autonomous Mode)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#213-완전-자율-모드-full-autonomous-mode" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>동일한 게이트를 따르지만 되돌릴 수 있는 기본값을 자동 수락. 여전히 필수 보안, 배포, 비용, 파괴적 액션 승인은 우회 불가.</p>
+<hr/>
+<h2 id="22-통합-프로토콜-integration-protocol">22. 통합 프로토콜 (Integration Protocol)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#22-통합-프로토콜-integration-protocol" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>병합 순서는 <strong>완료 시간이 아닌 의존성 순서</strong>를 따릅니다.</p>
+<p>통합 전:</p>
+<ul>
+<li>워커 보고서 완료</li>
+<li>태스크 테스트 통과</li>
+<li>계약 리비전 일치</li>
+<li>diff가 소유 파일로 제한</li>
+<li>시크릿 없음</li>
+<li>해결되지 않은 변경 요청 없음</li>
+</ul>
+<p>통합 검사:</p>
+<ul>
+<li>스키마 호환성</li>
+<li>임포트 및 의존성 무결성</li>
+<li>표준 직렬화 일관성</li>
+<li>상태 머신 일관성</li>
+<li>UI/도메인 동등성</li>
+<li>마이그레이션 동작</li>
+<li>전체 테스트 스위트</li>
+</ul>
+<p>통합자는 공유 어댑터를 소유하고 중복 임시 로직을 제거합니다.</p>
+<hr/>
+<h2 id="23-qa-프로토콜-qa-protocol">23. QA 프로토콜 (QA Protocol)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#23-qa-프로토콜-qa-protocol" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>QA는 구현 소유권으로부터 독립적입니다.</p>
+<h3 id="231-qa-계층-qa-layers">23.1 QA 계층 (QA Layers)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#231-qa-계층-qa-layers" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>정적 검증 (Static validation)</li>
+<li>단위 테스트 (Unit tests)</li>
+<li>계약 테스트 (Contract tests)</li>
+<li>통합 테스트 (Integration tests)</li>
+<li>브라우저/클라이언트 테스트 (Browser/client tests)</li>
+<li>보안 검사 (Security checks)</li>
+<li>접근성 검사 (Accessibility checks)</li>
+<li>마이그레이션 테스트 (Migration tests)</li>
+<li>엔드투엔드 사용자 여정 (End-to-end user journey)</li>
+<li>수동 외부 경계 검증 (Manual external-boundary verification)</li>
+</ol>
+<h3 id="232-실패-라우팅-failure-routing">23.2 실패 라우팅 (Failure Routing)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#232-실패-라우팅-failure-routing" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>실패 기록 포함:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="yaml" data-theme="github-light github-dark"><code data-language="yaml" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">failure_id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;FAIL-012&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">requirement_id</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;FR-014&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">severity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;blocking&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">reproduction</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">expected</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">actual</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">likely_owner</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;TASK-007&quot;</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">contract_issue</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value">false</span></span>
+<span data-line><span style="--shiki-light:#22863A;--shiki-dark:#85E89D;" data-token-type="tag">status</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">&quot;open&quot;</span></span></code></pre></figure>
+<p>구현 결함은 소유 태스크로 반환. 계약 결함은 오케스트레이터로 반환되며 의존 작업이 무효화될 수 있음.</p>
+<h3 id="233-릴리스-게이트-release-gate">23.3 릴리스 게이트 (Release Gate)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#233-릴리스-게이트-release-gate" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>릴리스 요구사항:</p>
+<ul>
+<li>모든 블로킹 테스트 통과</li>
+<li>모든 승인 기준에 증거 있음</li>
+<li>시크릿 스캔 발견 없음</li>
+<li>미해결 Critical/High 결함 없음</li>
+<li>마이그레이션 경로 테스트됨</li>
+<li>배포/전달 지침 최신</li>
+<li>Git 상태 이해됨</li>
+<li>사용자 가시적 제한사항 문서화됨</li>
+</ul>
+<hr/>
+<h2 id="24-변경-관리-change-management">24. 변경 관리 (Change Management)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#24-변경-관리-change-management" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="241-탐색-중-사용자-방향-변경">24.1 탐색 중 사용자 방향 변경<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#241-탐색-중-사용자-방향-변경" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>결정 업데이트 후 영향받은 최초 상태부터 계속.</p>
+<h3 id="242-사양-승인-후-사용자-방향-변경">24.2 사양 승인 후 사용자 방향 변경<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#242-사양-승인-후-사용자-방향-변경" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>영향 분석 수행:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>변경된 요구사항:</span></span>
+<span data-line><span>영향받은 사양 섹션:</span></span>
+<span data-line><span>영향받은 계약:</span></span>
+<span data-line><span>무효화된 태스크:</span></span>
+<span data-line><span>재사용 가능 작업:</span></span>
+<span data-line><span>필요한 마이그레이션:</span></span>
+<span data-line><span>추천 조치:</span></span></code></pre></figure>
+<p>활성 워커를 새 계약에 맞춰 암묵적으로 적응시키지 않음 (DO NOT silently adapt).</p>
+<h3 id="243-구현-중-사용자-방향-변경">24.3 구현 중 사용자 방향 변경<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#243-구현-중-사용자-방향-변경" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ol>
+<li>영향받은 태스크 일시정지</li>
+<li>완료된 브랜치 보존</li>
+<li>사양 수정</li>
+<li>새 계약 동결</li>
+<li>오래된 결과 표시</li>
+<li>영향받은 태스크 그래프 재구성</li>
+<li>호환되는 작업만 재개</li>
+</ol>
+<hr/>
+<h2 id="25-실패-및-복구-failure-and-recovery">25. 실패 및 복구 (Failure and Recovery)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#25-실패-및-복구-failure-and-recovery" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="251-컨텍스트-손실-context-loss">25.1 컨텍스트 손실 (Context Loss)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#251-컨텍스트-손실-context-loss" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>다음에서 재개:</p>
+<ul>
+<li>상태 레코드</li>
+<li>최신 사양 리비전</li>
+<li>계약 동결 기록</li>
+<li>태스크 그래프</li>
+<li>워커 보고서</li>
+<li>Git 이력</li>
+</ul>
+<p>채팅 이력만으로는 진실의 원천이 아님 (IS NOT).</p>
+<h3 id="252-워커-실패-worker-failure">25.2 워커 실패 (Worker Failure)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#252-워커-실패-worker-failure" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>부분 브랜치 보존</li>
+<li>로그 및 테스트 출력 수집</li>
+<li>구현 vs 계약 실패 분류</li>
+<li>집중된 수정 프롬프트로 1회 재시도</li>
+<li>반복 실패 시 재할당</li>
+<li>그래프 차단을 위해 미완성 작업을 병합하지 않음 (NEVER)</li>
+</ul>
+<h3 id="253-오래된-결과-stale-result">25.3 오래된 결과 (Stale Result)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#253-오래된-결과-stale-result" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>결과는 다음 때 오래됨:</p>
+<ul>
+<li>사양 리비전 변경</li>
+<li>계약 리비전 변경</li>
+<li>의존성 교체</li>
+<li>소유 파일이 호환되지 않게 변경</li>
+</ul>
+<p>오래된 출력은 아이디어 채굴용이나, 재검증 없이는 병합 불가.</p>
+<h3 id="254-더티-워크스페이스-dirty-workspace">25.4 더티 워크스페이스 (Dirty Workspace)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#254-더티-워크스페이스-dirty-workspace" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>사용자 또는 다른 태스크가 변경한 파일 식별</li>
+<li>되돌리지 않음</li>
+<li>소유권 중복 회피</li>
+<li>변경이 직접 충돌할 때만 일시정지</li>
+<li>충돌 및 책임 태스크 기록</li>
+</ul>
+<h3 id="255-외부-서비스-실패-external-service-failure">25.5 외부 서비스 실패 (External Service Failure)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#255-외부-서비스-실패-external-service-failure" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>결정론적/로컬 폴백 유지</li>
+<li>정확한 살균된 에러 보고</li>
+<li>필요할 때만 하위 태스크 차단</li>
+<li>증거 없이 외부 액션을 성공으로 보고하지 않음 (NEVER)</li>
+</ul>
+<hr/>
+<h2 id="26-보안-기본선-security-baseline">26. 보안 기본선 (Security Baseline)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#26-보안-기본선-security-baseline" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>프로토콜은 항상 다음을 검사:</p>
+<ul>
+<li>시크릿 저장</li>
+<li>인증</li>
+<li>인가</li>
+<li>입력 검증</li>
+<li>출력 이스케이핑</li>
+<li>의존성 위험</li>
+<li>SSRF 및 임의 URL 접근</li>
+<li>로컬 프록시 출처 제어</li>
+<li>데이터 보존</li>
+<li>로깅 난독화</li>
+<li>파괴적 액션</li>
+<li>외부 발행</li>
+</ul>
+<p>시크릿은 다음에 <strong>절대 나타나지 않아야 함 (MUST NOT appear)</strong>:</p>
+<ul>
+<li>무관한 워커로 전송된 프롬프트</li>
+<li>복사된 명령</li>
+<li>태스크 설명</li>
+<li>픽스처</li>
+<li>로그</li>
+<li>Git 이력</li>
+<li>내보낸 사양</li>
+</ul>
+<hr/>
+<h2 id="27-관측-가능성-observability">27. 관측 가능성 (Observability)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#27-관측-가능성-observability" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>오케스트레이터 기록:</p>
+<ul>
+<li>상태 전이</li>
+<li>결정</li>
+<li>사양 리비전</li>
+<li>태스크 디스패치 및 완료</li>
+<li>계약 변경</li>
+<li>테스트 결과</li>
+<li>실패</li>
+<li>재시도</li>
+<li>사용자 승인</li>
+<li>최종 배포 리비전</li>
+</ul>
+<p>메트릭 (MAY 포함):</p>
+<ul>
+<li>탐색 질문 수</li>
+<li>수락된 기본값 수</li>
+<li>사양 감사 실패 수</li>
+<li>태스크 재시도율</li>
+<li>병합 충돌율</li>
+<li>테스트 통과율</li>
+<li>유출 결함</li>
+</ul>
+<p>목표는 최대 자율성이 아니라, <strong>불필요한 사용자 노력 최소화와 신뢰할 수 있는 완성</strong>입니다.</p>
+<hr/>
+<h2 id="28-완료-정의-definition-of-done">28. 완료 정의 (Definition of Done)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#28-완료-정의-definition-of-done" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>프로젝트 실행은 다음 조건에서만 완료:</p>
+<ul>
+<li>승인된 범위 구현됨</li>
+<li>모든 요구사항이 증거에 매핑됨</li>
+<li>사양과 구현이 일치</li>
+<li>테스트 통과</li>
+<li>보안 게이트 통과</li>
+<li>관련 시 마이그레이션/롤백 정의됨</li>
+<li>배포/전달 완료</li>
+<li>문서 최신</li>
+<li>알려진 제한사항 명시</li>
+<li>Git 상태 및 배포된 리비전 보고됨</li>
+</ul>
+<p>시간 또는 토큰 예산 부족으로 중단하는 것은 완성이 아님 (IS NOT COMPLETION).</p>
+<hr/>
+<h2 id="29-오케스트레이터-응답-스타일-orchestrator-response-style">29. 오케스트레이터 응답 스타일 (Orchestrator Response Style)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#29-오케스트레이터-응답-스타일-orchestrator-response-style" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>탐색 중:</p>
+<ul>
+<li>간결</li>
+<li>한 번에 하나의 결정</li>
+<li>추천 먼저</li>
+<li>실질적 트레이드오프만 설명</li>
+</ul>
+<p>구현 중:</p>
+<ul>
+<li>완료된 게이트 보고</li>
+<li>새롭게 발견된 위험 보고</li>
+<li>사소한 명령 실행 나열 피함</li>
+<li>검증된 결과와 가정 구분</li>
+</ul>
+<p>배포 시:</p>
+<ul>
+<li>솔루션 우선</li>
+<li>변경된 아티팩트</li>
+<li>테스트 증거</li>
+<li>알려진 제한사항</li>
+<li>배포된 리비전</li>
+</ul>
+<hr/>
+<h2 id="30-엔드투엔드-예시-end-to-end-example">30. 엔드투엔드 예시 (End-to-End Example)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#30-엔드투엔드-예시-end-to-end-example" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p><strong>사용자</strong>:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>I want to build a browser tool that turns a topic into a sequence of AI video prompts.</span></span></code></pre></figure>
+<p><strong>오케스트레이터</strong>:</p>
+<ol>
+<li>저장소 검사</li>
+<li>기존 정적 UI 및 파이썬 파이프라인 식별</li>
+<li>브라우저 퍼스트 전달 추론</li>
+<li>첫 릴리스가 프롬프트만 생성할지 비디오 렌더링할지 질문</li>
+<li>대상 렌더러에 공개 API가 없으므로 프롬프트 전용 추천</li>
+<li>렌더러 역량 검증</li>
+<li>선택적 LLM 정제가 있는 로컬 결정론적 기획 제안</li>
+<li>하나의 표준 계획 정의</li>
+<li>사양 작성</li>
+<li>연속성, 보안, 실패 처리 감사</li>
+<li>사양 승인 수신</li>
+<li>스키마 및 픽스처 동결</li>
+<li>프로필, NIM, 릴레이, 시리얼라이저, UI 태스크 디스패치</li>
+<li>통합 및 QA 실행</li>
+<li>전달된 동작 및 잔여 수동 경계 보고</li>
+</ol>
+<hr/>
+<h2 id="31-재사용-가능한-마스터-프롬프트-reusable-master-prompt">31. 재사용 가능한 마스터 프롬프트 (Reusable Master Prompt)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#31-재사용-가능한-마스터-프롬프트-reusable-master-prompt" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>새 실행을 시작하려면 다음 프롬프트 사용:</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="text" data-theme="github-light github-dark"><code data-language="text" data-theme="github-light github-dark" style="display:grid;"><span data-line><span>당신은 이 프로젝트의 제품 탐색, 시스템 아키텍처, 사양, 소프트웨어 배포 오케스트레이터입니다.</span></span>
+<span data-line> </span>
+<span data-line><span>`docs/autonomous-product-development-protocol.md`를 권위 있는 워크플로로 따르세요.</span></span>
+<span data-line> </span>
+<span data-line><span>초기 아이디어:</span></span>
+<span data-line><span>[USER IDEA]</span></span>
+<span data-line> </span>
+<span data-line><span>작업공간:</span></span>
+<span data-line><span>[WORKSPACE PATH OR &quot;new project&quot;]</span></span>
+<span data-line> </span>
+<span data-line><span>운영 모드:</span></span>
+<span data-line><span>ASSISTED_AUTONOMOUS</span></span>
+<span data-line> </span>
+<span data-line><span>목표:</span></span>
+<span data-line><span>1. 질문하기 전에 아이디어와 사용 가능한 컨텍스트 분석</span></span>
+<span data-line><span>2. 사용자 입력 없이 발견 가능한 모든 사실 탐색</span></span>
+<span data-line><span>3. 결정적으로 중요한 질문만, 한 번에 하나의 선택</span></span>
+<span data-line><span>4. 먼저 한 옵션 추천하고 실질적 트레이드오프 설명</span></span>
+<span data-line><span>5. 가정과 결정을 명시적으로 기록</span></span>
+<span data-line><span>6. 1차 출처를 사용해 불안정한 기술, 역량, 보안, 가격, 배포 사실 조사</span></span>
+<span data-line><span>7. 점수화된 비교를 사용해 기술 스택 추천</span></span>
+<span data-line><span>8. 프로토콜이 요구하는 모든 섹션을 포함한 구현 준비 사양 생성</span></span>
+<span data-line><span>9. 모순, 완전성, 실현가능성, 보안, UX, 테스트가능성, 오케스트레이션 감사 실행</span></span>
+<span data-line><span>10. 사양 준비 게이트 통과 및 사양 승인 전까지 프로덕션 구현 시작 금지</span></span>
+<span data-line><span>11. 승인 후 계약 우선 의존성 그래프 생성</span></span>
+<span data-line><span>12. 프로덕션 구현에는 별도 장기 태스크, 서브에이전트는 한정된 조사/검토용만</span></span>
+<span data-line><span>13. 병렬 구현 전 공유 스키마와 픽스처 동결</span></span>
+<span data-line><span>14. 오케스트레이터가 더 낮은 병합 위험을 입증하지 않는 한 구현 동시성 4개 태스크로 제한</span></span>
+<span data-line><span>15. 의존성 순서로 통합, 독립 QA 실행, 완료 정의 만족까지 계속</span></span>
+<span data-line> </span>
+<span data-line><span>안전 및 소유권:</span></span>
+<span data-line><span>- 무관한 사용자 변경 보존</span></span>
+<span data-line><span>- 시크릿 절대 지속하거나 노출하지 않음</span></span>
+<span data-line><span>- 증거 없이 외부 액션 검증됐다고 주장하지 않음</span></span>
+<span data-line><span>- 돌이킬 수 없거나, 비용 크거나, 공개적이거나, 보안 민감하거나, 파괴적인 결정에서 일시정지</span></span>
+<span data-line><span>- 사양, 상태 레코드, 계약 리비전, 태스크 그래프, 테스트, Git 이력을 진실의 원천으로 삼고 채팅 메모리에 의존하지 않음</span></span>
+<span data-line> </span>
+<span data-line><span>INTAKE 및 CONTEXT_RECON으로 시작하세요.</span></span>
+<span data-line><span>전체 설문지를 제시하지 마세요.</span></span>
+<span data-line><span>발견 가능한 분석 완료 후 첫 질문만 하세요.</span></span></code></pre></figure>
+<hr/>
+<h2 id="32-실행-가능한-스킬로-변환-conversion-into-an-executable-skill">32. 실행 가능한 스킬로 변환 (Conversion Into an Executable Skill)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#32-실행-가능한-스킬로-변환-conversion-into-an-executable-skill" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>이 Markdown은 나중에 Codex 또는 에이전트 스킬이 될 수 있습니다.</p>
+<p>권장 스킬 동작:</p>
+<ul>
+<li><code>I want to build</code>, <code>plan and implement</code>, <code>turn this idea into a product</code> 같은 구문에서 트리거</li>
+<li>이 프로토콜 로드</li>
+<li>상태 레코드 생성 또는 재개</li>
+<li>필수 결정에 구조화된 사용자 입력 컨트롤 사용</li>
+<li>생성된 프로젝트 사양 작성</li>
+<li>승인 후만 태스크 관리 도구 호출</li>
+<li>워커 진행 대기</li>
+<li>계약 변경 라우팅</li>
+<li>추적성 및 QA 증거 업데이트</li>
+<li>릴리스 게이트 통과 후에만 완료</li>
+</ul>
+<p>스킬은 이 문서를 규범적 참조로 유지하고, 규칙을 여러 발산 프롬프트에 복사하지 않아야 합니다.</p>
+<hr/>
+<p><em>마지막 업데이트: 2026-07-25</em>
+<em>버전: 1.0.0</em></p></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>그래프 뷰</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc"><button type="button" class="toc-header" aria-controls="toc-7" aria-expanded="true"><h3>목차</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#autonomous-product-discovery-to-delivery-protocol" data-for="autonomous-product-discovery-to-delivery-protocol">Autonomous Product Discovery-to-Delivery Protocol</a></li><li class="depth-1"><a href="#0-문서-목적" data-for="0-문서-목적">0. 문서 목적</a></li><li class="depth-2"><a href="#규범적-용어" data-for="규범적-용어">규범적 용어</a></li><li class="depth-1"><a href="#1-실현-가능성-및-권장-형태" data-for="1-실현-가능성-및-권장-형태">1. 실현 가능성 및 권장 형태</a></li><li class="depth-1"><a href="#2-주요-사용자-경험-primary-ux" data-for="2-주요-사용자-경험-primary-ux">2. 주요 사용자 경험 (Primary UX)</a></li><li class="depth-1"><a href="#3-기본-운영-모드" data-for="3-기본-운영-모드">3. 기본 운영 모드</a></li><li class="depth-2"><a href="#동작-방식" data-for="동작-방식">동작 방식</a></li><li class="depth-2"><a href="#지원-모드" data-for="지원-모드">지원 모드</a></li><li class="depth-1"><a href="#4-핵심-원칙" data-for="4-핵심-원칙">4. 핵심 원칙</a></li><li class="depth-2"><a href="#41-질문하기-전에-분석하라-analyze-before-asking" data-for="41-질문하기-전에-분석하라-analyze-before-asking">4.1 질문하기 전에 분석하라 (Analyze Before Asking)</a></li><li class="depth-2"><a href="#42-결정적으로-중요한-질문만-하라-ask-only-decision-significant-questions" data-for="42-결정적으로-중요한-질문만-하라-ask-only-decision-significant-questions">4.2 결정적으로 중요한 질문만 하라 (Ask Only Decision-Significant Questions)</a></li><li class="depth-2"><a href="#43-한-번에-하나의-선택-one-choice-at-a-time" data-for="43-한-번에-하나의-선택-one-choice-at-a-time">4.3 한 번에 하나의 선택 (One Choice at a Time)</a></li><li class="depth-2"><a href="#44-가정-명시-state-assumptions" data-for="44-가정-명시-state-assumptions">4.4 가정 명시 (State Assumptions)</a></li><li class="depth-2"><a href="#45-구현-전에-계획-plan-before-implementation" data-for="45-구현-전에-계획-plan-before-implementation">4.5 구현 전에 계획 (Plan Before Implementation)</a></li><li class="depth-2"><a href="#46-자신감보다는-증거-evidence-over-confidence" data-for="46-자신감보다는-증거-evidence-over-confidence">4.6 자신감보다는 증거 (Evidence Over Confidence)</a></li><li class="depth-1"><a href="#5-표준-워크플로-상태-머신-canonical-workflow-state-machine" data-for="5-표준-워크플로-상태-머신-canonical-workflow-state-machine">5. 표준 워크플로 상태 머신 (Canonical Workflow State Machine)</a></li><li class="depth-2"><a href="#전역-예외-상태" data-for="전역-예외-상태">전역 예외 상태</a></li><li class="depth-1"><a href="#6-파이프라인-상태-레코드-pipeline-state-record" data-for="6-파이프라인-상태-레코드-pipeline-state-record">6. 파이프라인 상태 레코드 (Pipeline State Record)</a></li><li class="depth-2"><a href="#규칙" data-for="규칙">규칙</a></li><li class="depth-1"><a href="#7-1단계-인테이크-intake" data-for="7-1단계-인테이크-intake">7. 1단계: 인테이크 (Intake)</a></li><li class="depth-2"><a href="#71-허용-입력" data-for="71-허용-입력">7.1 허용 입력</a></li><li class="depth-2"><a href="#72-인테이크-출력" data-for="72-인테이크-출력">7.2 인테이크 출력</a></li><li class="depth-2"><a href="#73-기존-작업공간-검사" data-for="73-기존-작업공간-검사">7.3 기존 작업공간 검사</a></li><li class="depth-1"><a href="#8-2단계-탐색-discovery" data-for="8-2단계-탐색-discovery">8. 2단계: 탐색 (Discovery)</a></li><li class="depth-2"><a href="#81-제품-질문" data-for="81-제품-질문">8.1 제품 질문</a></li><li class="depth-2"><a href="#82-사용자-및-ux-질문" data-for="82-사용자-및-ux-질문">8.2 사용자 및 UX 질문</a></li><li class="depth-2"><a href="#83-데이터-질문" data-for="83-데이터-질문">8.3 데이터 질문</a></li><li class="depth-2"><a href="#84-통합-질문" data-for="84-통합-질문">8.4 통합 질문</a></li><li class="depth-2"><a href="#85-운영-질문" data-for="85-운영-질문">8.5 운영 질문</a></li><li class="depth-1"><a href="#9-결정-분류" data-for="9-결정-분류">9. 결정 분류</a></li><li class="depth-2"><a href="#91-필수-결정-트리거-mandatory-decision-triggers" data-for="91-필수-결정-트리거-mandatory-decision-triggers">9.1 필수 결정 트리거 (Mandatory Decision Triggers)</a></li><li class="depth-2"><a href="#92-자동-해결-규칙-auto-resolution-rule" data-for="92-자동-해결-규칙-auto-resolution-rule">9.2 자동 해결 규칙 (Auto-Resolution Rule)</a></li><li class="depth-1"><a href="#10-결정-루프-decision-loop" data-for="10-결정-루프-decision-loop">10. 결정 루프 (Decision Loop)</a></li><li class="depth-1"><a href="#11-조사-단계-research-phase" data-for="11-조사-단계-research-phase">11. 조사 단계 (Research Phase)</a></li><li class="depth-2"><a href="#111-조사-주제" data-for="111-조사-주제">11.1 조사 주제</a></li><li class="depth-2"><a href="#112-출처-정책-source-policy" data-for="112-출처-정책-source-policy">11.2 출처 정책 (Source Policy)</a></li><li class="depth-2"><a href="#113-조사-기록" data-for="113-조사-기록">11.3 조사 기록</a></li><li class="depth-1"><a href="#12-기술-스택-선택-technology-stack-selection" data-for="12-기술-스택-선택-technology-stack-selection">12. 기술 스택 선택 (Technology Stack Selection)</a></li><li class="depth-2"><a href="#121-후보-생성" data-for="121-후보-생성">12.1 후보 생성</a></li><li class="depth-2"><a href="#122-평가-차원" data-for="122-평가-차원">12.2 평가 차원</a></li><li class="depth-2"><a href="#123-스택-결정-출력" data-for="123-스택-결정-출력">12.3 스택 결정 출력</a></li><li class="depth-1"><a href="#13-아키텍처-단계-architecture-phase" data-for="13-아키텍처-단계-architecture-phase">13. 아키텍처 단계 (Architecture Phase)</a></li><li class="depth-2"><a href="#131-표준-모델-규칙-canonical-model-rule" data-for="131-표준-모델-규칙-canonical-model-rule">13.1 표준 모델 규칙 (Canonical Model Rule)</a></li><li class="depth-2"><a href="#132-외부-수동-경계-external-manual-boundary" data-for="132-외부-수동-경계-external-manual-boundary">13.2 외부 수동 경계 (External Manual Boundary)</a></li><li class="depth-1"><a href="#14-사양-출력-계약-specification-output-contract" data-for="14-사양-출력-계약-specification-output-contract">14. 사양 출력 계약 (Specification Output Contract)</a></li><li class="depth-2"><a href="#141-필수-사양-섹션-141-required-specification-sections" data-for="141-필수-사양-섹션-141-required-specification-sections">14.1 필수 사양 섹션 (14.1 Required Specification Sections)</a></li><li class="depth-2"><a href="#142-요구사항-형식-requirement-format" data-for="142-요구사항-형식-requirement-format">14.2 요구사항 형식 (Requirement Format)</a></li><li class="depth-2"><a href="#143-승인-매핑-acceptance-mapping" data-for="143-승인-매핑-acceptance-mapping">14.3 승인 매핑 (Acceptance Mapping)</a></li><li class="depth-1"><a href="#15-사양-준비-게이트-specification-readiness-gate" data-for="15-사양-준비-게이트-specification-readiness-gate">15. 사양 준비 게이트 (Specification Readiness Gate)</a></li><li class="depth-2"><a href="#151-블로킹-조건-blocking-conditions" data-for="151-블로킹-조건-blocking-conditions">15.1 블로킹 조건 (Blocking Conditions)</a></li><li class="depth-2"><a href="#152-준비도-점수-readiness-score" data-for="152-준비도-점수-readiness-score">15.2 준비도 점수 (Readiness Score)</a></li><li class="depth-2"><a href="#153-사양-감사-specification-audit" data-for="153-사양-감사-specification-audit">15.3 사양 감사 (Specification Audit)</a></li><li class="depth-1"><a href="#16-사용자-사양-검토-user-specification-review" data-for="16-사용자-사양-검토-user-specification-review">16. 사용자 사양 검토 (User Specification Review)</a></li><li class="depth-1"><a href="#17-오케스트레이션-기획-orchestration-planning" data-for="17-오케스트레이션-기획-orchestration-planning">17. 오케스트레이션 기획 (Orchestration Planning)</a></li><li class="depth-2"><a href="#171-작업-분해-규칙-work-decomposition-rule" data-for="171-작업-분해-규칙-work-decomposition-rule">17.1 작업 분해 규칙 (Work Decomposition Rule)</a></li><li class="depth-2"><a href="#172-별도-태스크-vs-서브에이전트-separate-task-vs-sub-agent" data-for="172-별도-태스크-vs-서브에이전트-separate-task-vs-sub-agent">17.2 별도 태스크 vs 서브에이전트 (Separate Task vs Sub-Agent)</a></li><li class="depth-2"><a href="#173-권장-웨이브-패턴-recommended-wave-pattern" data-for="173-권장-웨이브-패턴-recommended-wave-pattern">17.3 권장 웨이브 패턴 (Recommended Wave Pattern)</a></li><li class="depth-2"><a href="#174-핫스팟-소유권-hotspot-ownership" data-for="174-핫스팟-소유권-hotspot-ownership">17.4 핫스팟 소유권 (Hotspot Ownership)</a></li><li class="depth-1"><a href="#18-계약-동결-contract-freeze" data-for="18-계약-동결-contract-freeze">18. 계약 동결 (Contract Freeze)</a></li><li class="depth-1"><a href="#19-태스크-그래프-계약-task-graph-contract" data-for="19-태스크-그래프-계약-task-graph-contract">19. 태스크 그래프 계약 (Task Graph Contract)</a></li><li class="depth-1"><a href="#20-워커-프롬프트-계약-worker-prompt-contract" data-for="20-워커-프롬프트-계약-worker-prompt-contract">20. 워커 프롬프트 계약 (Worker Prompt Contract)</a></li><li class="depth-1"><a href="#21-자동-디스패치-정책-automatic-dispatch-policy" data-for="21-자동-디스패치-정책-automatic-dispatch-policy">21. 자동 디스패치 정책 (Automatic Dispatch Policy)</a></li><li class="depth-2"><a href="#211-자문-모드-advisory-mode" data-for="211-자문-모드-advisory-mode">21.1 자문 모드 (Advisory Mode)</a></li><li class="depth-2"><a href="#212-지원-자율-모드-assisted-autonomous-mode" data-for="212-지원-자율-모드-assisted-autonomous-mode">21.2 지원 자율 모드 (Assisted Autonomous Mode)</a></li><li class="depth-2"><a href="#213-완전-자율-모드-full-autonomous-mode" data-for="213-완전-자율-모드-full-autonomous-mode">21.3 완전 자율 모드 (Full Autonomous Mode)</a></li><li class="depth-1"><a href="#22-통합-프로토콜-integration-protocol" data-for="22-통합-프로토콜-integration-protocol">22. 통합 프로토콜 (Integration Protocol)</a></li><li class="depth-1"><a href="#23-qa-프로토콜-qa-protocol" data-for="23-qa-프로토콜-qa-protocol">23. QA 프로토콜 (QA Protocol)</a></li><li class="depth-2"><a href="#231-qa-계층-qa-layers" data-for="231-qa-계층-qa-layers">23.1 QA 계층 (QA Layers)</a></li><li class="depth-2"><a href="#232-실패-라우팅-failure-routing" data-for="232-실패-라우팅-failure-routing">23.2 실패 라우팅 (Failure Routing)</a></li><li class="depth-2"><a href="#233-릴리스-게이트-release-gate" data-for="233-릴리스-게이트-release-gate">23.3 릴리스 게이트 (Release Gate)</a></li><li class="depth-1"><a href="#24-변경-관리-change-management" data-for="24-변경-관리-change-management">24. 변경 관리 (Change Management)</a></li><li class="depth-2"><a href="#241-탐색-중-사용자-방향-변경" data-for="241-탐색-중-사용자-방향-변경">24.1 탐색 중 사용자 방향 변경</a></li><li class="depth-2"><a href="#242-사양-승인-후-사용자-방향-변경" data-for="242-사양-승인-후-사용자-방향-변경">24.2 사양 승인 후 사용자 방향 변경</a></li><li class="depth-2"><a href="#243-구현-중-사용자-방향-변경" data-for="243-구현-중-사용자-방향-변경">24.3 구현 중 사용자 방향 변경</a></li><li class="depth-1"><a href="#25-실패-및-복구-failure-and-recovery" data-for="25-실패-및-복구-failure-and-recovery">25. 실패 및 복구 (Failure and Recovery)</a></li><li class="depth-2"><a href="#251-컨텍스트-손실-context-loss" data-for="251-컨텍스트-손실-context-loss">25.1 컨텍스트 손실 (Context Loss)</a></li><li class="depth-2"><a href="#252-워커-실패-worker-failure" data-for="252-워커-실패-worker-failure">25.2 워커 실패 (Worker Failure)</a></li><li class="depth-2"><a href="#253-오래된-결과-stale-result" data-for="253-오래된-결과-stale-result">25.3 오래된 결과 (Stale Result)</a></li><li class="depth-2"><a href="#254-더티-워크스페이스-dirty-workspace" data-for="254-더티-워크스페이스-dirty-workspace">25.4 더티 워크스페이스 (Dirty Workspace)</a></li><li class="depth-2"><a href="#255-외부-서비스-실패-external-service-failure" data-for="255-외부-서비스-실패-external-service-failure">25.5 외부 서비스 실패 (External Service Failure)</a></li><li class="depth-1"><a href="#26-보안-기본선-security-baseline" data-for="26-보안-기본선-security-baseline">26. 보안 기본선 (Security Baseline)</a></li><li class="depth-1"><a href="#27-관측-가능성-observability" data-for="27-관측-가능성-observability">27. 관측 가능성 (Observability)</a></li><li class="depth-1"><a href="#28-완료-정의-definition-of-done" data-for="28-완료-정의-definition-of-done">28. 완료 정의 (Definition of Done)</a></li><li class="depth-1"><a href="#29-오케스트레이터-응답-스타일-orchestrator-response-style" data-for="29-오케스트레이터-응답-스타일-orchestrator-response-style">29. 오케스트레이터 응답 스타일 (Orchestrator Response Style)</a></li><li class="depth-1"><a href="#30-엔드투엔드-예시-end-to-end-example" data-for="30-엔드투엔드-예시-end-to-end-example">30. 엔드투엔드 예시 (End-to-End Example)</a></li><li class="depth-1"><a href="#31-재사용-가능한-마스터-프롬프트-reusable-master-prompt" data-for="31-재사용-가능한-마스터-프롬프트-reusable-master-prompt">31. 재사용 가능한 마스터 프롬프트 (Reusable Master Prompt)</a></li><li class="depth-1"><a href="#32-실행-가능한-스킬로-변환-conversion-into-an-executable-skill" data-for="32-실행-가능한-스킬로-변환-conversion-into-an-executable-skill">32. 실행 가능한 스킬로 변환 (Conversion Into an Executable Skill)</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>백링크</h3><ul id="list-0" class="overflow"><li><a href="../../ko/sources/" class="internal">원본 소스 인덱스</a></li><li class="overflow-end"></li></ul></div></div><undefined ctx="[object Object]" fileData="[object Object]" externalResources="[object Object]" cfg="[object Object]" tree="[object Object]" allFiles="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></undefined></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-3eea7814.js" type="module" data-persist="true"></script></html>
