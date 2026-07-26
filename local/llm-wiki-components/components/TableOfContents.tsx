@@ -180,7 +180,7 @@ TableOfContents.css = `
     max-height: 60vh;
     border-radius: var(--layout-radius-xl) var(--layout-radius-xl) 0 0;
     border-bottom: none;
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--layout-shadow-xl);
     z-index: var(--z-drawer);
     transform: translateY(100%);
     transition: transform var(--motion-duration-normal) var(--motion-ease-out);

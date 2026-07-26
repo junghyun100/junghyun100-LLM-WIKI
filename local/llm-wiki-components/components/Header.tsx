@@ -280,7 +280,7 @@ Header.css = `
   align-items: center;
   justify-content: center;
   width: 40px;
-  height: 40px
+  height: 40px;
   background: var(--color-surface-2);
   border: 1px solid var(--color-border-default);
   border-radius: var(--layout-radius-md);
@@ -331,7 +331,7 @@ Header.css = `
 
 .github-link:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 2px
+  outline-offset: 2px;
 }
 
 .github-link svg {

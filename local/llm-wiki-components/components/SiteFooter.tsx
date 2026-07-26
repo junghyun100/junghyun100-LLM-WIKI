@@ -117,7 +117,7 @@ SiteFooter.css = `
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
-  max-width: var(--width-wide);
+  max-width: var(--layout-width-wide);
   margin: 0 auto var(--space-8);
   padding: 0 var(--space-4);
 }
@@ -224,7 +224,7 @@ SiteFooter.css = `
   gap: var(--space-4);
   padding-top: var(--space-8);
   border-top: 1px solid var(--color-border-default);
-  max-width: var(--width-wide);
+  max-width: var(--layout-width-wide);
   margin: 0 auto;
   padding-left: var(--space-4);
   padding-right: var(--space-4);

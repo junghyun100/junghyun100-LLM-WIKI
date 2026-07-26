@@ -37,7 +37,7 @@ const SidebarNav: QuartzComponent = ({
       items: [
         { href: `${basePath}/ko/wiki/concepts`, label: "핵심 개념", icon: "brain" },
         { href: `${basePath}/ko/wiki/entities`, label: "논문·엔티티", icon: "file-text" },
-        { href: `${basePath}/ko/wiki/sources`, label: "소스 문서", icon: "database" },
+        { href: `${basePath}/ko/sources`, label: "소스 문서", icon: "database" },
       ],
     },
     {
