@@ -39,9 +39,10 @@ export async function loadFramesFromPackage(
       // Register under the frame's declared name
       frameRegistry.register(pageFrame.name, pageFrame, pluginName)
     }
-  } catch {
+  } catch (err) {
     if (manifest.frames && Object.keys(manifest.frames).length > 0) {
       console.warn(`Plugin "${pluginName}" declares frames but failed to load them`)
+      console.warn(err)
     }
   }
 }
