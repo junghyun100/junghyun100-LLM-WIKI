@@ -8,13 +8,25 @@ const Header: QuartzComponent = ({
   cfg,
 }: QuartzComponentProps) => {
   const pageTitle = cfg.pageTitle
-  const baseUrl = cfg.baseUrl
+  const baseUrl = cfg.baseUrl || ""
+  const basePath = !baseUrl
+    ? ""
+    : (() => {
+        try {
+          const url = baseUrl.startsWith("http") ? new URL(baseUrl) : new URL(`https://${baseUrl}`)
+          return url.pathname.replace(/\/$/, "")
+        } catch {
+          const match = baseUrl.match(/\/([^/].*)?$/)
+          return match ? "/" + match[1].replace(/\/$/, "") : ""
+        }
+      })()
+  const homeHref = basePath || "/"
 
   return (
     <header class="site-header" role="banner">
       <div class="header-left">
         <a
-          href={baseUrl || "/"}
+          href={homeHref}
           class="site-logo"
           aria-label={`${pageTitle} - Home`}
         >
@@ -37,19 +49,19 @@ const Header: QuartzComponent = ({
         </a>
 
         <nav class="nav-tabs" aria-label="주 메뉴" role="navigation">
-          <a href={baseUrl ? `${baseUrl}ko/getting-started` : "/ko/getting-started"} class="nav-tab">
+          <a href={`${basePath}/ko/getting-started`} class="nav-tab">
             시작하기
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/wiki/concepts` : "/ko/wiki/concepts"} class="nav-tab">
+          <a href={`${basePath}/ko/wiki/concepts`} class="nav-tab">
             핵심 개념
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/wiki/entities` : "/ko/wiki/entities"} class="nav-tab">
+          <a href={`${basePath}/ko/wiki/entities`} class="nav-tab">
             논문·엔티티
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/tools` : "/ko/tools"} class="nav-tab">
+          <a href={`${basePath}/ko/tools`} class="nav-tab">
             도구
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/workflow` : "/ko/workflow"} class="nav-tab">
+          <a href={`${basePath}/ko/workflow`} class="nav-tab">
             워크플로우
           </a>
         </nav>

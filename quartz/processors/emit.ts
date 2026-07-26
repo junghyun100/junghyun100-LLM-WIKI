@@ -79,16 +79,14 @@ export async function emitContent(ctx: BuildCtx, content: ProcessedContent[]) {
     (e) => e.name !== "PageTypeDispatcher" && e.name !== "ComponentResources",
   )
   let emitErrors = 0
-  const counts = await Promise.all(
-    otherEmitters.map((emitter) =>
-      runEmitter(emitter, ctx, contentWithVirtual, staticResources, log).catch((err) => {
-        emitErrors++
-        console.error(`Emitter "${emitter.name}" failed:`, err.message ?? err)
-        return 0
-      }),
-    ),
-  )
-  emittedFiles += counts.reduce((sum, c) => sum + c, 0)
+  for (const emitter of otherEmitters) {
+    try {
+      emittedFiles += await runEmitter(emitter, ctx, contentWithVirtual, staticResources, log)
+    } catch (err) {
+      emitErrors++
+      console.error(`Emitter "${emitter.name}" failed:`, (err as Error).message ?? err)
+    }
+  }
 
   if (emitErrors > 0) {
     console.warn(

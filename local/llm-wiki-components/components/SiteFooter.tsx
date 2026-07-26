@@ -54,7 +54,7 @@ const SiteFooter: QuartzComponent = ({
             <ul>
               <li><a href={`${basePath}/ko/wiki/concepts`}>핵심 개념</a></li>
               <li><a href={`${basePath}/ko/wiki/entities`}>논문·엔티티</a></li>
-              <li><a href={`${basePath}/ko/wiki/sources`}>소스 문서</a></li>
+              <li><a href={`${basePath}/ko/sources`}>소스 문서</a></li>
             </ul>
           </div>
           <div class="footer-nav-column">
