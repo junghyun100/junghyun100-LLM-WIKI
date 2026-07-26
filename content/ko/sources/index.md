@@ -12,13 +12,10 @@ description: '수집된 원본 소스 전체 목록'
 ## 소스 목록
 
 | ID | 제목 | 저자 | 연도 | 유형 | 태그 | 수집일 |
-|----|------|------|------|------|------|------|--------|
-| [src-001](src-001-attention-is-all-you-need) | Attention Is All You Need | Vaswani et al. | 2017 | paper | foundational, attention, transformer | 2025-07-16 |
-| [src-002](src-002-gpt-4-technical-report) | GPT-4 Technical Report | OpenAI | 2023 | paper | gpt-4, multimodal, closed-source | 2025-07-16 |
-| [src-003](src-003-scaling-laws-for-neural-language-models) | Scaling Laws for Neural Language Models | Kaplan et al. | 2020 | paper | scaling-laws, kaplan | 2025-07-10 |
-| [src-004](src-004-flash-attention-3) | Flash Attention 3 | Dao et al. | 2024 | paper | attention, optimization, h100 | 2025-07-16 |
-| [src-005](src-005-training-compute-optimal-large-language-models) | Training Compute-Optimal LLMs | Hoffmann et al. | 2022 | paper | scaling-laws, chinchilla | 2025-07-10 |
-| [src-006](src-006-autonomous-product-discovery-delivery-protocol) | Autonomous Product Discovery-to-Delivery Protocol | Junghyun | 2026 | doc | protocol, product-development, ai-orchestration, autonomous-workflow, specification | 2026-07-25 |
+| --- | --- | --- | --- | --- | --- | --- |
+| [src-001](src-001-autonomous-product-discovery-delivery-protocol) | Autonomous Product Discovery-to-Delivery Protocol | Junghyun | 2026 | doc | protocol, product-development, ai-orchestration, autonomous-workflow, specification | 2026-07-25 |
+
+> 2026-07-25 정리 기준으로 외부 테스트 소스(`src-001~005`)는 제거되었고, 현재 저장소에는 본인 작성 원본 소스만 유지합니다.
 
 ---
 
