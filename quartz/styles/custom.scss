@@ -7,3 +7,10 @@
 
 // Additional custom styles go here
 // The design system is fully defined in design-tokens.scss and imported by base.scss
+
+// Hide the mobile bottom TOC/supplementary panel while keeping desktop navigation.
+@media all and (max-width: 800px) {
+  .page .right.sidebar {
+    display: none;
+  }
+}
