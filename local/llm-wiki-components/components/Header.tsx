@@ -6,15 +6,31 @@ import { QuartzComponent, QuartzComponentProps, QuartzComponentConstructor } fro
 const Header: QuartzComponent = ({
   fileData,
   cfg,
+  ctx,
 }: QuartzComponentProps) => {
   const pageTitle = cfg.pageTitle
-  const baseUrl = cfg.baseUrl
+  // Compute basePath from baseUrl (robust to formats: "host/path/", "https://host/path/", "/path/")
+  const baseUrl = cfg.baseUrl || ""
+  const basePath = ctx.argv.serve || !baseUrl
+    ? ""
+    : (() => {
+        try {
+          // Handle full URL format (https://host/path/) or host/path format
+          const url = baseUrl.startsWith("http") ? new URL(baseUrl) : new URL(`https://${baseUrl}`)
+          return url.pathname.replace(/\/$/, "")
+        } catch {
+          // Fallback: extract path after first slash (for "host/path/" format)
+          const match = baseUrl.match(/\/([^/].*)?$/)
+          return match ? "/" + match[1].replace(/\/$/, "") : ""
+        }
+      })()
+  const homeHref = basePath || "/"
 
   return (
     <header class="site-header" role="banner">
       <div class="header-left">
         <a
-          href={baseUrl || "/"}
+          href={homeHref}
           class="site-logo"
           aria-label={`${pageTitle} - Home`}
         >
@@ -37,19 +53,19 @@ const Header: QuartzComponent = ({
         </a>
 
         <nav class="nav-tabs" aria-label="주 메뉴" role="navigation">
-          <a href={baseUrl ? `${baseUrl}ko/getting-started` : "/ko/getting-started"} class="nav-tab">
+          <a href={`${basePath}/ko/getting-started`} class="nav-tab">
             시작하기
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/wiki/concepts` : "/ko/wiki/concepts"} class="nav-tab">
+          <a href={`${basePath}/ko/wiki/concepts`} class="nav-tab">
             핵심 개념
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/wiki/entities` : "/ko/wiki/entities"} class="nav-tab">
+          <a href={`${basePath}/ko/wiki/entities`} class="nav-tab">
             논문·엔티티
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/tools` : "/ko/tools"} class="nav-tab">
+          <a href={`${basePath}/ko/tools`} class="nav-tab">
             도구
           </a>
-          <a href={baseUrl ? `${baseUrl}ko/workflow` : "/ko/workflow"} class="nav-tab">
+          <a href={`${basePath}/ko/workflow`} class="nav-tab">
             워크플로우
           </a>
         </nav>
@@ -264,7 +280,7 @@ Header.css = `
   align-items: center;
   justify-content: center;
   width: 40px;
-  height: 40px;
+  height: 40px
   background: var(--color-surface-2);
   border: 1px solid var(--color-border-default);
   border-radius: var(--layout-radius-md);
@@ -315,7 +331,7 @@ Header.css = `
 
 .github-link:focus-visible {
   outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
+  outline-offset: 2px
 }
 
 .github-link svg {
@@ -647,4 +663,6 @@ const ThemeToggle: QuartzComponent = () => {
   )
 }
 
-export default (() => Header) satisfies QuartzComponentConstructor
+const SiteHeaderConstructor = () => Header
+SiteHeaderConstructor.__cacheId = "SiteHeader"
+export default SiteHeaderConstructor satisfies QuartzComponentConstructor

@@ -8,36 +8,50 @@ import { useState } from "preact/hooks"
 const SidebarNav: QuartzComponent = ({
   cfg,
 }: QuartzComponentProps) => {
-  const baseUrl = cfg.baseUrl || "/"
+  // Compute basePath from baseUrl (same logic as Header component)
+  let basePath = ""
+  const baseUrl = cfg.baseUrl || ""
+  if (baseUrl) {
+    try {
+      const url = new URL(baseUrl)
+      basePath = url.pathname
+    } catch {
+      // Fallback for URLs without protocol (e.g., "domain.com/path")
+      const match = baseUrl.match(/\/([^/].*)?$/)
+      basePath = match ? "/" + match[1].replace(/\/$/, "") : ""
+    }
+  }
+  if (!basePath.startsWith("/")) basePath = "/" + basePath
+  basePath = basePath.replace(/\/+$/, "")
 
   const navSections = [
     {
       title: "시작하기",
       items: [
-        { href: `${baseUrl}ko/getting-started`, label: "시작 가이드", icon: "book-open" },
-        { href: `${baseUrl}ko/workflow`, label: "워크플로우", icon: "git-branch" },
+        { href: `${basePath}/ko/getting-started`, label: "시작 가이드", icon: "book-open" },
+        { href: `${basePath}/ko/workflow`, label: "워크플로우", icon: "git-branch" },
       ],
     },
     {
       title: "위키",
       items: [
-        { href: `${baseUrl}ko/wiki/concepts`, label: "핵심 개념", icon: "brain" },
-        { href: `${baseUrl}ko/wiki/entities`, label: "논문·엔티티", icon: "file-text" },
-        { href: `${baseUrl}ko/wiki/sources`, label: "소스 문서", icon: "database" },
+        { href: `${basePath}/ko/wiki/concepts`, label: "핵심 개념", icon: "brain" },
+        { href: `${basePath}/ko/wiki/entities`, label: "논문·엔티티", icon: "file-text" },
+        { href: `${basePath}/ko/wiki/sources`, label: "소스 문서", icon: "database" },
       ],
     },
     {
       title: "참조",
       items: [
-        { href: `${baseUrl}ko/tools`, label: "도구", icon: "wrench" },
-        { href: `${baseUrl}ko/resources`, label: "리소스", icon: "link-2" },
-        { href: `${baseUrl}ko/schema`, label: "스키마", icon: "file-code" },
+        { href: `${basePath}/ko/tools`, label: "도구", icon: "wrench" },
+        { href: `${basePath}/ko/resources`, label: "리소스", icon: "link-2" },
+        { href: `${basePath}/ko/schema`, label: "스키마", icon: "file-code" },
       ],
     },
     {
       title: "메타",
       items: [
-        { href: `${baseUrl}ko/log`, label: "변경 로그", icon: "history" },
+        { href: `${basePath}/ko/log`, label: "변경 로그", icon: "history" },
       ],
     },
   ]

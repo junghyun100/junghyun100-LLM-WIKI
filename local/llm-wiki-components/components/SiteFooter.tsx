@@ -1,12 +1,25 @@
-import { QuartzComponent, QuartzComponentProps, QuartzComponentConstructor } from "@quartz/components/types"
+import { QuartzComponent, QuartzComponentProps } from "@quartz/components/types"
 
 /**
  * Site Footer - replaces @quartz-community/footer
  */
 const SiteFooter: QuartzComponent = ({
   cfg,
-}: QuartzComponentProps & { cfg: any }) => {
-  const baseUrl = cfg.baseUrl || "https://junghyun100.github.io/junghyun100-LLM-WIKI/"
+  ctx,
+}: QuartzComponentProps) => {
+  // Compute basePath from baseUrl (robust to formats: "host/path/", "https://host/path/", "/path/")
+  const baseUrl = cfg.baseUrl || ""
+  const basePath = ctx.argv.serve || !baseUrl
+    ? ""
+    : (() => {
+        try {
+          const url = baseUrl.startsWith("http") ? new URL(baseUrl) : new URL(`https://${baseUrl}`)
+          return url.pathname.replace(/\/$/, "")
+        } catch {
+          const match = baseUrl.match(/\/([^/].*)?$/)
+          return match ? "/" + match[1].replace(/\/$/, "") : ""
+        }
+      })()
   const pageTitle = cfg.pageTitle || "LLM Wiki"
   const year = new Date().getFullYear()
 
@@ -14,7 +27,7 @@ const SiteFooter: QuartzComponent = ({
     <footer class="site-footer" role="contentinfo">
       <div class="footer-grid">
         <div class="footer-brand">
-          <a href={baseUrl || "/"} class="footer-logo" aria-label={`${pageTitle} - Home`}>
+          <a href={basePath || "/"} class="footer-logo" aria-label={`${pageTitle} - Home`}>
             <svg
               class="logo-mark"
               viewBox="0 0 32 32"
@@ -39,23 +52,23 @@ const SiteFooter: QuartzComponent = ({
           <div class="footer-nav-column">
             <h4>위키</h4>
             <ul>
-              <li><a href={`${baseUrl}ko/wiki/concepts`}>핵심 개념</a></li>
-              <li><a href={`${baseUrl}ko/wiki/entities`}>논문·엔티티</a></li>
-              <li><a href={`${baseUrl}ko/wiki/sources`}>소스 문서</a></li>
+              <li><a href={`${basePath}/ko/wiki/concepts`}>핵심 개념</a></li>
+              <li><a href={`${basePath}/ko/wiki/entities`}>논문·엔티티</a></li>
+              <li><a href={`${basePath}/ko/wiki/sources`}>소스 문서</a></li>
             </ul>
           </div>
           <div class="footer-nav-column">
             <h4>도구</h4>
             <ul>
-              <li><a href={`${baseUrl}ko/tools`}>도구 모음</a></li>
-              <li><a href={`${baseUrl}ko/resources`}>리소스</a></li>
-              <li><a href={`${baseUrl}ko/schema`}>스키마</a></li>
+              <li><a href={`${basePath}/ko/tools`}>도구 모음</a></li>
+              <li><a href={`${basePath}/ko/resources`}>리소스</a></li>
+              <li><a href={`${basePath}/ko/schema`}>스키마</a></li>
             </ul>
           </div>
           <div class="footer-nav-column">
             <h4>메타</h4>
             <ul>
-              <li><a href={`${baseUrl}ko/log`}>변경 로그</a></li>
+              <li><a href={`${basePath}/ko/log`}>변경 로그</a></li>
               <li><a href="#contribute">기여하기</a></li>
               <li><a href="#license">라이선스</a></li>
             </ul>
@@ -271,4 +284,6 @@ SiteFooter.css = `
 }
 `
 
-export default (() => SiteFooter) satisfies QuartzComponentConstructor
+const SiteFooterConstructor = () => SiteFooter
+SiteFooterConstructor.__cacheId = "SiteFooter"
+export default SiteFooterConstructor satisfies QuartzComponentConstructor

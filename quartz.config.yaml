@@ -7,7 +7,7 @@ configuration:
   analytics:
     provider: plausible
   locale: ko-KR
-  baseUrl: https://junghyun100.github.io/junghyun100-LLM-WIKI/
+  baseUrl: junghyun100.github.io/junghyun100-LLM-WIKI/
   ignorePatterns:
     - private
     - templates
@@ -184,6 +184,8 @@ layout:
       priority: 35
       direction: row
       gap: 0.5rem
+  frame:
+    template: "local"
   byPageType:
     "404":
       positions:
@@ -193,7 +195,7 @@ layout:
     content:
       positions:
         header:
-          - Header
+          - SiteHeader
         left:
           - SidebarNav
         right:
@@ -205,7 +207,7 @@ layout:
         - reader-mode
       positions:
         header:
-          - Header
+          - SiteHeader
         left:
           - SidebarNav
         right: []
@@ -216,7 +218,7 @@ layout:
         - reader-mode
       positions:
         header:
-          - Header
+          - SiteHeader
         left:
           - SidebarNav
         right: []
@@ -225,12 +227,12 @@ layout:
     canvas:
       positions:
         header:
-          - Header
+          - SiteHeader
         footer:
           - SiteFooter
     bases:
       positions:
         header:
-          - Header
+          - SiteHeader
         footer:
           - SiteFooter

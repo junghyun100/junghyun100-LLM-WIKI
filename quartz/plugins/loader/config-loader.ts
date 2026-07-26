@@ -876,6 +876,12 @@ export async function loadQuartzLayout(
   if (footer) {
     defaultLayout.footer = footer
   }
+  // Apply top-level frame template if specified
+  console.log("[DEBUG] layoutConfig.frame:", layoutConfig.frame)
+  if (layoutConfig.frame?.template) {
+    console.log("[DEBUG] Setting defaultLayout.frame to:", layoutConfig.frame.template)
+    defaultLayout.frame = layoutConfig.frame.template
+  }
 
   // Ensure all byPageType entries inherit structural slots
   for (const pageType of Object.keys(byPageType)) {
@@ -883,6 +889,10 @@ export async function loadQuartzLayout(
     if (!pt.head) pt.head = head
     if (!pt.header) pt.header = []
     if (footer && !pt.footer) pt.footer = footer
+    // Inherit frame from defaultLayout if not explicitly set
+    if (!pt.frame && defaultLayout.frame) {
+      pt.frame = defaultLayout.frame
+    }
   }
 
   const mergedDefaults = { ...defaultLayout, ...layoutOverrides?.defaults }

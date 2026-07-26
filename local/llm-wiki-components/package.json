@@ -7,7 +7,8 @@
   "module": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
-    "./components": "./dist/index.js"
+    "./components": "./dist/index.js",
+    "./frames": "./dist/index.js"
   },
   "scripts": {
     "build": "tsup"
@@ -15,13 +16,13 @@
   "quartz": {
     "name": "llm-wiki-components",
     "displayName": "LLM Wiki Custom Components",
-    "description": "Custom components for LLM Wiki: Header, SidebarNav, TableOfContents, SiteFooter",
+    "description": "Custom components for LLM Wiki: SiteHeader, SidebarNav, TableOfContents, SiteFooter",
     "version": "1.0.0",
     "category": "component",
     "components": {
-      "Header": {
-        "displayName": "Header",
-        "description": "Modern header with logo, nav tabs, search, and toolbar",
+      "SiteHeader": {
+        "displayName": "SiteHeader",
+        "description": "Modern header with logo, navigation tabs, search, and toolbar",
         "defaultPosition": "header",
         "defaultPriority": 0
       },
@@ -42,6 +43,11 @@
         "description": "Multi-column footer with brand, navigation, and copyright",
         "defaultPosition": "footer",
         "defaultPriority": 0
+      }
+    },
+    "frames": {
+      "LocalFrame": {
+        "exportName": "LocalFrame"
       }
     }
   },
