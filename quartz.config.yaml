@@ -68,6 +68,12 @@ plugins:
   - source: "@quartz-community/github-flavored-markdown"
     enabled: true
     order: 40
+  - source: "@quartz-community/table-of-contents"
+    enabled: true
+    order: 50
+    layout:
+      position: right
+      priority: 30
   - source: "@quartz-community/crawl-links"
     enabled: true
     options:
@@ -124,16 +130,52 @@ plugins:
   - source: "@quartz-community/folder-page"
     enabled: true
   - source: "@quartz-community/tag-page"
-    enabled: false
-  # ─── Layout Components ───
-  - source: "./local/llm-wiki-components"
     enabled: true
+  - source: "@quartz-community/explorer"
+    enabled: true
+    layout:
+      position: left
+      priority: 50
+  - source: "@quartz-community/search"
+    enabled: true
+    layout:
+      position: left
+      priority: 20
+      group: toolbar
+      groupOptions:
+        grow: true
+  - source: "@quartz-community/page-title"
+    enabled: true
+    layout:
+      position: left
+      priority: 10
+  - source: "@quartz-community/darkmode"
+    enabled: true
+    layout:
+      position: left
+      priority: 30
+      group: toolbar
+  - source: "@quartz-community/footer"
+    enabled: true
+    options:
+      links:
+        GitHub: https://github.com/junghyun100/junghyun100-LLM-WIKI
   - source: "@quartz-community/reader-mode"
     enabled: true
     layout:
       position: left
       priority: 35
       group: toolbar
+  - source: "@quartz-community/article-title"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 10
+  - source: "@quartz-community/content-meta"
+    enabled: true
+    layout:
+      position: beforeBody
+      priority: 20
   - source: "@quartz-community/note-properties"
     enabled: true
     options:
@@ -184,55 +226,22 @@ layout:
       priority: 35
       direction: row
       gap: 0.5rem
-  frame:
-    template: "local"
   byPageType:
     "404":
       positions:
         beforeBody: []
         left: []
         right: []
-    content:
-      positions:
-        header:
-          - SiteHeader
-        left:
-          - SidebarNav
-        right:
-          - TableOfContents
-        footer:
-          - SiteFooter
+    content: {}
     folder:
       exclude:
         - reader-mode
       positions:
-        header:
-          - SiteHeader
-        left:
-          - SidebarNav
         right: []
-        footer:
-          - SiteFooter
     tag:
       exclude:
         - reader-mode
       positions:
-        header:
-          - SiteHeader
-        left:
-          - SidebarNav
         right: []
-        footer:
-          - SiteFooter
-    canvas:
-      positions:
-        header:
-          - SiteHeader
-        footer:
-          - SiteFooter
-    bases:
-      positions:
-        header:
-          - SiteHeader
-        footer:
-          - SiteFooter
+    canvas: {}
+    bases: {}
