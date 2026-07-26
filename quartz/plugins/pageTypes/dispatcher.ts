@@ -23,6 +23,11 @@ function resolveLayout(
   const overrides = byPageType[pageType.layout] ?? {}
   // Frame priority: config override > page type declaration > default
   const frame = overrides.frame ?? pageType.frame ?? "default"
+  const resolvedFooter = Array.isArray(overrides.footer)
+    ? overrides.footer[0]
+    : Array.isArray(sharedDefaults.footer)
+      ? sharedDefaults.footer[0]
+      : (overrides.footer ?? sharedDefaults.footer)
   return {
     head: overrides.head ?? sharedDefaults.head!,
     header: overrides.header ?? sharedDefaults.header ?? [],
@@ -31,7 +36,7 @@ function resolveLayout(
     afterBody: overrides.afterBody ?? sharedDefaults.afterBody ?? [],
     left: overrides.left ?? sharedDefaults.left ?? [],
     right: overrides.right ?? sharedDefaults.right ?? [],
-    footer: overrides.footer ?? sharedDefaults.footer!,
+    footer: resolvedFooter!,
     frame,
   }
 }
